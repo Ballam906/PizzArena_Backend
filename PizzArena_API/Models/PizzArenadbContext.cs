@@ -11,6 +11,7 @@ namespace PizzArena_API.Models
         }
 
         public DbSet<Termek> termekek { get; set; }
+        public DbSet<Kategoria> kategoriak {  get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -1,0 +1,237 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "PizzArena_API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Kategoria": {
+      "get": {
+        "tags": [
+          "Kategoria"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Kategoria"
+        ],
+        "parameters": [
+          {
+            "name": "nev",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Termek": {
+      "get": {
+        "tags": [
+          "Termek"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Termek"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TermekLetrehozasDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TermekLetrehozasDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TermekLetrehozasDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Termek"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TermekFrissitesDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TermekFrissitesDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TermekFrissitesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Termek"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Termek/{id}": {
+      "get": {
+        "tags": [
+          "Termek"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TermekFrissitesDto": {
+        "required": [
+          "ar",
+          "kategoria_Id",
+          "kep_Url",
+          "leiras",
+          "nev"
+        ],
+        "type": "object",
+        "properties": {
+          "nev": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "leiras": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ar": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kategoria_Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kep_Url": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "modIdo": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TermekLetrehozasDto": {
+        "required": [
+          "ar",
+          "kategoria_Id",
+          "kep_Url",
+          "leiras",
+          "nev"
+        ],
+        "type": "object",
+        "properties": {
+          "nev": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "leiras": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ar": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kategoria_Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "kep_Url": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "ContainingType": "PizzArena_API.Controllers.KategoriaController",
+    "Method": "GetKategoriak",
+    "RelativePath": "api/Kategoria",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.KategoriaController",
+    "Method": "KategoriaLetrehozas",
+    "RelativePath": "api/Kategoria",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nev",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.TermekController",
+    "Method": "GetTermek",
+    "RelativePath": "api/Termek",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.TermekController",
+    "Method": "TermekLetrehozas",
+    "RelativePath": "api/Termek",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Termek",
+        "Type": "PizzArena_API.Models.Dtos.TermekLetrehozasDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.TermekController",
+    "Method": "TermekFrissites",
+    "RelativePath": "api/Termek",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "termekfrissites",
+        "Type": "PizzArena_API.Models.Dtos.TermekFrissitesDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.TermekController",
+    "Method": "TermekTorles",
+    "RelativePath": "api/Termek",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.TermekController",
+    "Method": "TermekLekID",
+    "RelativePath": "api/Termek/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
