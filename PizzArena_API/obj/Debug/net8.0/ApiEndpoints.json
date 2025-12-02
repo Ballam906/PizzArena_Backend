@@ -1,5 +1,31 @@
 [
   {
+    "ContainingType": "PizzArena_API.Controllers.FiokController",
+    "Method": "GetFiok",
+    "RelativePath": "api/Fiok",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.FiokController",
+    "Method": "FiokLetrehozas",
+    "RelativePath": "api/Fiok",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fiokletrehozas",
+        "Type": "PizzArena_API.Models.Dtos.FiokLetrehozas",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PizzArena_API.Controllers.KategoriaController",
     "Method": "GetKategoriak",
     "RelativePath": "api/Kategoria",
@@ -23,6 +49,101 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.KategoriaController",
+    "Method": "KategoriaFrissites",
+    "RelativePath": "api/Kategoria",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "kategoriaFrissites",
+        "Type": "PizzArena_API.Models.Dtos.KategoriaFrissites",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.KategoriaController",
+    "Method": "KategoriaTorles",
+    "RelativePath": "api/Kategoria",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.KategoriaController",
+    "Method": "KategoriaLEKID",
+    "RelativePath": "api/Kategoria/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.KategoriaController",
+    "Method": "KategoriaTermekekkel",
+    "RelativePath": "api/Kategoria/KategoriaTermekekkel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.SzerepkorController",
+    "Method": "SzerepkorLetrehozas",
+    "RelativePath": "api/Szerepkor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "szerepkorletrehozas",
+        "Type": "PizzArena_API.Models.Dtos.SzerepkorLetrehozas",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.SzerepkorController",
+    "Method": "SzerepkorLekerdezes",
+    "RelativePath": "api/Szerepkor",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

@@ -1,4 +1,7 @@
 
+using PizzArena_API.Models;
+using System.Text.Json.Serialization;
+
 namespace PizzArena_API
 {
     public class Program
@@ -6,6 +9,12 @@ namespace PizzArena_API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<PizzArenadbContext>();
+
+            builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+
 
             // Add services to the container.
 

@@ -1,13 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PizzArena_API.Models
+namespace PizzArena_API.Models.Dtos
 {
-    public class Fiok
+    public class FiokLetrehozas
     {
-        [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
-
         [Required]
         [Column(TypeName = "varchar(100)")]
         public string Felhasznalonev { get; set; }
@@ -21,13 +18,6 @@ namespace PizzArena_API.Models
         public string Jelszo { get; set; }
 
         [Required]
-        public DateTime RegisztracioIdeje { get; set; } = DateTime.UtcNow;
-
-        [Required]
-        [Column(TypeName = "char(36)")]
         public Guid SzerepkorId { get; set; }
-
-        [ForeignKey(nameof(SzerepkorId))]
-        public Szerepkor Szerepkor { get; set; }
     }
 }
