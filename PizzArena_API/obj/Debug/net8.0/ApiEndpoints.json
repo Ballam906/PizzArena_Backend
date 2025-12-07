@@ -26,6 +26,59 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PizzArena_API.Controllers.FiokController",
+    "Method": "FiokFrissites",
+    "RelativePath": "api/Fiok",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "fiokfrissites",
+        "Type": "PizzArena_API.Models.Dtos.FiokFrissites",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.FiokController",
+    "Method": "FiokTorles",
+    "RelativePath": "api/Fiok",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.FiokController",
+    "Method": "FiokGETID",
+    "RelativePath": "api/Fiok/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PizzArena_API.Controllers.KategoriaController",
     "Method": "GetKategoriak",
     "RelativePath": "api/Kategoria",
@@ -116,6 +169,111 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.RendelesController",
+    "Method": "RendelesLekerdezes",
+    "RelativePath": "api/Rendeles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.RendelesController",
+    "Method": "RendelesHozzaadas",
+    "RelativePath": "api/Rendeles",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rendelesletrehozas",
+        "Type": "PizzArena_API.Models.Dtos.RendelesLetrehozas",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.RendelesController",
+    "Method": "RendelesFrissites",
+    "RelativePath": "api/Rendeles",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "rendelesFrissites",
+        "Type": "PizzArena_API.Models.Dtos.RendelesFrissites",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.RendelesController",
+    "Method": "RendelesTorles",
+    "RelativePath": "api/Rendeles",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.RendelesController",
+    "Method": "RendelesLEID",
+    "RelativePath": "api/Rendeles/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.RendelesItemController",
+    "Method": "RendelesItemLekerdezes",
+    "RelativePath": "api/RendelesItem",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.RendelesItemController",
+    "Method": "RendelesItemHozzaadas",
+    "RelativePath": "api/RendelesItem",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rendelesitemletrehozas",
+        "Type": "PizzArena_API.Models.Dtos.RendelesItemLetrehozas",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

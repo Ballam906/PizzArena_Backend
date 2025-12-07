@@ -17,6 +17,7 @@ namespace PizzArena_API.Models
         public int Ar { get; set; }
         [ForeignKey("Kategoria")]
         public int Kategoria_Id { get; set; }
+
         [JsonIgnore]
         public Kategoria Kategoria { get; set; }
         [Required]

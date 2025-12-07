@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzArena_API.Models;
 
@@ -10,9 +11,11 @@ using PizzArena_API.Models;
 namespace PizzArena_API.Migrations
 {
     [DbContext(typeof(PizzArenadbContext))]
-    partial class PizzArenadbContextModelSnapshot : ModelSnapshot
+    [Migration("20251202185547_TablakKesz")]
+    partial class TablakKesz
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,10 +83,6 @@ namespace PizzArena_API.Migrations
 
                     b.Property<DateTime>("RendIdo")
                         .HasColumnType("datetime(6)");
-
-                    b.Property<string>("SzallitasiCim")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("VasarloTelszam")
                         .IsRequired()

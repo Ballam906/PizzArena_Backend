@@ -44,6 +44,88 @@
             "description": "OK"
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Fiok"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiokFrissites"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiokFrissites"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiokFrissites"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Fiok"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Fiok/{id}": {
+      "get": {
+        "tags": [
+          "Fiok"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/Kategoria": {
@@ -174,6 +256,170 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Rendeles": {
+      "get": {
+        "tags": [
+          "Rendeles"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Rendeles"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RendelesLetrehozas"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RendelesLetrehozas"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RendelesLetrehozas"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Rendeles"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RendelesFrissites"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RendelesFrissites"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RendelesFrissites"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Rendeles"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Rendeles/{id}": {
+      "get": {
+        "tags": [
+          "Rendeles"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/RendelesItem": {
+      "get": {
+        "tags": [
+          "RendelesItem"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "RendelesItem"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RendelesItemLetrehozas"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RendelesItemLetrehozas"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RendelesItemLetrehozas"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -348,6 +594,34 @@
   },
   "components": {
     "schemas": {
+      "FiokFrissites": {
+        "required": [
+          "email",
+          "felhasznalonev",
+          "jelszo",
+          "szerepkorId"
+        ],
+        "type": "object",
+        "properties": {
+          "felhasznalonev": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "jelszo": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "szerepkorId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
       "FiokLetrehozas": {
         "required": [
           "email",
@@ -385,6 +659,90 @@
           "nev": {
             "minLength": 1,
             "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RendelesFrissites": {
+        "required": [
+          "nev",
+          "szallitasiCim",
+          "vasarloTelszam"
+        ],
+        "type": "object",
+        "properties": {
+          "nev": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "vasarloTelszam": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "szallitasiCim": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RendelesItemLetrehozas": {
+        "required": [
+          "darab",
+          "dbAr",
+          "rendeles_Id",
+          "termek_Id"
+        ],
+        "type": "object",
+        "properties": {
+          "dbAr": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "darab": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rendeles_Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "termek_Id": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RendelesLetrehozas": {
+        "required": [
+          "felhasznalo_Id",
+          "nev",
+          "rendIdo",
+          "szallitasiCim",
+          "vasarloTelszam"
+        ],
+        "type": "object",
+        "properties": {
+          "nev": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "vasarloTelszam": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "szallitasiCim": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "felhasznalo_Id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "rendIdo": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "additionalProperties": false

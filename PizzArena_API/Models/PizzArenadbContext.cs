@@ -17,6 +17,9 @@ namespace PizzArena_API.Models
         public DbSet<Fiok> Fiokok { get; set; }
         public DbSet<Szerepkor> Szerepkorok { get; set; }
 
+        public DbSet<Rendeles> Rendelesek { get; set; }
+        public DbSet<Rendeles_Termek> Rendeles_Termek { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzArena_API.Models;
 
@@ -10,9 +11,11 @@ using PizzArena_API.Models;
 namespace PizzArena_API.Migrations
 {
     [DbContext(typeof(PizzArenadbContext))]
-    partial class PizzArenadbContextModelSnapshot : ModelSnapshot
+    [Migration("20251202185320_RendelesCuccok")]
+    partial class RendelesCuccok
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,64 +66,6 @@ namespace PizzArena_API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("kategoriak");
-                });
-
-            modelBuilder.Entity("PizzArena_API.Models.Rendeles", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("Felhasznalo_Id")
-                        .HasColumnType("char(36)");
-
-                    b.Property<string>("Nev")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<DateTime>("RendIdo")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("SzallitasiCim")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("VasarloTelszam")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Felhasznalo_Id");
-
-                    b.ToTable("Rendelesek");
-                });
-
-            modelBuilder.Entity("PizzArena_API.Models.Rendeles_Termek", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("Darab")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DbAr")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rendeles_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Termek_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Rendeles_Id");
-
-                    b.HasIndex("Termek_Id");
-
-                    b.ToTable("Rendeles_Termek");
                 });
 
             modelBuilder.Entity("PizzArena_API.Models.Szerepkor", b =>
@@ -184,36 +129,6 @@ namespace PizzArena_API.Migrations
                         .IsRequired();
 
                     b.Navigation("Szerepkor");
-                });
-
-            modelBuilder.Entity("PizzArena_API.Models.Rendeles", b =>
-                {
-                    b.HasOne("PizzArena_API.Models.Fiok", "Fiok")
-                        .WithMany()
-                        .HasForeignKey("Felhasznalo_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Fiok");
-                });
-
-            modelBuilder.Entity("PizzArena_API.Models.Rendeles_Termek", b =>
-                {
-                    b.HasOne("PizzArena_API.Models.Rendeles", "Rendeles")
-                        .WithMany()
-                        .HasForeignKey("Rendeles_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PizzArena_API.Models.Termek", "Termek")
-                        .WithMany()
-                        .HasForeignKey("Termek_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Rendeles");
-
-                    b.Navigation("Termek");
                 });
 
             modelBuilder.Entity("PizzArena_API.Models.Termek", b =>

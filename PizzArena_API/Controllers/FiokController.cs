@@ -62,7 +62,7 @@ namespace PizzArena_API.Controllers
                     SzerepkorId = fiokletrehozas.SzerepkorId
                 };
 
-                if(fiok != null)
+                if (fiok != null)
                 {
                     await _context.Fiokok.AddAsync(fiok);
                     await _context.SaveChangesAsync();
@@ -76,6 +76,86 @@ namespace PizzArena_API.Controllers
                 return StatusCode(400, new { message = ex.Message, result = "" });
             }
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult> FiokGETID(Guid id)
+        {
+            try
+            {
+                var fiok = await _context.Fiokok.Include(f => f.Szerepkor).Select(f => new
+                {
+                    f.Id,
+                    f.Felhasznalonev,
+                    f.Email,
+                    f.Jelszo,
+                    f.RegisztracioIdeje,
+                    f.SzerepkorId,
+                    Szerepkor = f.Szerepkor.Nev
+                }).FirstOrDefaultAsync(x => x.Id == id);
+                if (fiok != null)
+                {
+                    return Ok(new { messaege = "Sikeres lekérdezés", result = fiok });
+                }
+                return NotFound(new { message = "Sikertelen lekérdezés", result = fiok });
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(400, new { message = ex.Message, result = "" });
+            }
+        }
+
+
+        [HttpPut]
+        public async Task<ActionResult> FiokFrissites(Guid id, FiokFrissites fiokfrissites)
+        {
+            try
+            {
+                var fiok = await _context.Fiokok.FirstOrDefaultAsync(x => x.Id == id);
+                if (fiok != null)
+                {
+                    fiok.Email = fiokfrissites.Email;
+                    fiok.Felhasznalonev = fiokfrissites.Felhasznalonev;
+                    fiok.Jelszo = fiokfrissites.Jelszo;
+                    fiok.SzerepkorId = fiokfrissites.SzerepkorId;
+
+                    _context.Fiokok.Update(fiok);
+                    await _context.SaveChangesAsync();
+                    return Ok(new { message = "Sikeres frisítés." });
+                }
+
+                return NotFound(new { message = "Nincs mit frissíteni!" });
+
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(400, new { message = ex.Message, result = "" });
+            }
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> FiokTorles(Guid id)
+        {
+            try
+            {
+                var fiok = await _context.Fiokok.FirstOrDefaultAsync(x => x.Id == id);
+                if (fiok != null)
+                {
+                    _context.Fiokok.Remove(fiok);
+                    await _context.SaveChangesAsync();
+                    return Ok(new { message = "Sikeres törlés." });
+                }
+                return NotFound(new { message = "Nincs mit törölni!" });
+            }
+            catch (Exception ex)
+            {
+
+                return StatusCode(400, new { message = ex.Message, result = "" });
+            }
+        }
+
+
 
 
         private string HashPasswordSHA256(string password)
