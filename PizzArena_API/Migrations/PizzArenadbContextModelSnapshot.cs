@@ -147,6 +147,9 @@ namespace PizzArena_API.Migrations
                     b.Property<int>("Ar")
                         .HasColumnType("int");
 
+                    b.Property<bool>("ElerhetoE")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("Kategoria_Id")
                         .HasColumnType("int");
 

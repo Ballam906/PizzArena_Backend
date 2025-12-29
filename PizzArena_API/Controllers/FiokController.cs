@@ -157,6 +157,92 @@ namespace PizzArena_API.Controllers
 
 
 
+        [HttpPost("loginadmin")]
+        public async Task<ActionResult> Login(FiokLogin login)
+        {
+            try
+            {
+                string hashJelszo = HashPasswordSHA256(login.Jelszo);
+
+                var fiok = await _context.Fiokok
+                    .Include(f => f.Szerepkor)
+                    .FirstOrDefaultAsync(f =>
+                        f.Felhasznalonev == login.Felhasznalonev &&
+                        f.Jelszo == hashJelszo);
+
+                if (fiok == null)
+                {
+                    return Unauthorized(new { message = "Hibás felhasználónév vagy jelszó" });
+                }
+
+                if (fiok.Szerepkor.Nev != "Admin")
+                    return Unauthorized(new { message = "Csak admin felhasználó léphet be" });
+
+                return Ok(new
+                {
+                    message = "Sikeres bejelentkezés",
+                    result = new
+                    {
+                        fiok.Id,
+                        fiok.Felhasznalonev,
+                        fiok.Email,
+                        Szerepkor = fiok.Szerepkor.Nev
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, new { message = ex.Message });
+            }
+        }
+
+        [HttpPost("regisztracioadmin")]
+        public async Task<ActionResult> Regisztracio(FiokRegisztracio regisztracio)
+        {
+            try
+            {
+
+                string hashJelszo = HashPasswordSHA256(regisztracio.Jelszo);
+
+                var adminSzerepkor = await _context.Szerepkorok
+                    .FirstOrDefaultAsync(s => s.Nev == "Admin");
+
+                if (adminSzerepkor == null)
+                    throw new Exception("Admin szerepkör nem található.");
+
+                var fiok = new Fiok
+                {
+                    Felhasznalonev = regisztracio.Felhasznalonev,
+                    Email = regisztracio.Email,
+                    Jelszo = hashJelszo,
+                    SzerepkorId = adminSzerepkor.Id,
+                    Szerepkor = adminSzerepkor
+                };
+
+                if (fiok != null)
+                {
+                    await _context.Fiokok.AddAsync(fiok);
+                    await _context.SaveChangesAsync();
+                    return StatusCode(201, new {
+                        message = "Sikeres felvétel",
+                        result = new
+                        {
+                            fiok.Id,
+                            fiok.Felhasznalonev,
+                            fiok.Email,
+                            Szerepkor = adminSzerepkor.Nev  // nem kell új betöltés
+                        }
+                    });
+                }
+                return NotFound(new { message = "Sikertlen felvétel", result = fiok });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(400, new { message = ex.Message });
+            }
+        }
+
+
 
         private string HashPasswordSHA256(string password)
         {

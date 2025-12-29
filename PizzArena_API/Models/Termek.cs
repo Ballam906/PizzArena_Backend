@@ -15,6 +15,10 @@ namespace PizzArena_API.Models
         [Column(TypeName = "varchar(100)")]
         public string Leiras { get; set; }
         public int Ar { get; set; }
+
+        [Required]
+        public bool ElerhetoE { get; set; }
+
         [ForeignKey("Kategoria")]
         public int Kategoria_Id { get; set; }
 

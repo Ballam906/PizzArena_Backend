@@ -41,6 +41,7 @@ namespace PizzArena_API.Controllers
                     Nev = Termek.Nev,
                     Leiras = Termek.Leiras,
                     Ar = Termek.Ar,
+                    ElerhetoE = Termek.ElerhetoE,
                     Kategoria_Id = Termek.Kategoria_Id,
                     Kep_Url = Termek.Kep_Url
                 };
@@ -93,6 +94,7 @@ namespace PizzArena_API.Controllers
                 if (meglevotermek != null)
                 {
                     meglevotermek.Ar = termekfrissites.Ar;
+                    meglevotermek.ElerhetoE = termekfrissites.ElerhetoE;
                     meglevotermek.Nev = termekfrissites.Nev;
                     meglevotermek.Leiras = termekfrissites.Leiras;
                     meglevotermek.ModIdo = termekfrissites.ModIdo;

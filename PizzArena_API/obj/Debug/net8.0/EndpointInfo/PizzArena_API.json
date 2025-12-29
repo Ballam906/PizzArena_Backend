@@ -128,6 +128,68 @@
         }
       }
     },
+    "/api/Fiok/loginadmin": {
+      "post": {
+        "tags": [
+          "Fiok"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiokLogin"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiokLogin"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiokLogin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Fiok/regisztracioadmin": {
+      "post": {
+        "tags": [
+          "Fiok"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiokRegisztracio"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiokRegisztracio"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FiokRegisztracio"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Kategoria": {
       "get": {
         "tags": [
@@ -646,6 +708,47 @@
           "szerepkorId": {
             "type": "string",
             "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FiokLogin": {
+        "required": [
+          "felhasznalonev",
+          "jelszo"
+        ],
+        "type": "object",
+        "properties": {
+          "felhasznalonev": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "jelszo": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FiokRegisztracio": {
+        "required": [
+          "email",
+          "felhasznalonev",
+          "jelszo"
+        ],
+        "type": "object",
+        "properties": {
+          "felhasznalonev": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "email": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "jelszo": {
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false

@@ -14,6 +14,8 @@ namespace PizzArena_API.Models.Dtos
         [Required]
         public int Ar { get; set; }
         [Required]
+        public bool ElerhetoE { get; set; }
+        [Required]
         public int Kategoria_Id { get; set; }
         [Required]
         [Column(TypeName = "varchar(100)")]

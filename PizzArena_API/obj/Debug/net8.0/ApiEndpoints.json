@@ -79,6 +79,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PizzArena_API.Controllers.FiokController",
+    "Method": "Login",
+    "RelativePath": "api/Fiok/loginadmin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "PizzArena_API.Models.Dtos.FiokLogin",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzArena_API.Controllers.FiokController",
+    "Method": "Regisztracio",
+    "RelativePath": "api/Fiok/regisztracioadmin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "regisztracio",
+        "Type": "PizzArena_API.Models.Dtos.FiokRegisztracio",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "PizzArena_API.Controllers.KategoriaController",
     "Method": "GetKategoriak",
     "RelativePath": "api/Kategoria",
