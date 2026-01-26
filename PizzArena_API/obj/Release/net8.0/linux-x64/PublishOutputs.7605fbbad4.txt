@@ -1,4 +1,0 @@
-C:\Users\autowolf\source\repos\PizzArena_API\PizzArena_API\obj\Release\net8.0\linux-x64\PubTmp\Out\appsettings.Development.json
-C:\Users\autowolf\source\repos\PizzArena_API\PizzArena_API\obj\Release\net8.0\linux-x64\PubTmp\Out\appsettings.json
-C:\Users\autowolf\source\repos\PizzArena_API\PizzArena_API\obj\Release\net8.0\linux-x64\PubTmp\Out\PizzArena_API.pdb
-C:\Users\autowolf\source\repos\PizzArena_API\PizzArena_API\obj\Release\net8.0\linux-x64\PubTmp\Out\PizzArena_API
