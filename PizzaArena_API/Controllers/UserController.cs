@@ -48,8 +48,8 @@ namespace PizzaArena_API.Controllers
         [HttpDelete("deleteuser")]
         public async Task<ActionResult> DeleteUser(string userid)
         {
-            foreach (var c in User.Claims)
-                Console.WriteLine($"{c.Type} = {c.Value}");
+            /*foreach (var c in User.Claims)
+                Console.WriteLine($"{c.Type} = {c.Value}");*/
 
             var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)
                      ?? User.FindFirst("sub");

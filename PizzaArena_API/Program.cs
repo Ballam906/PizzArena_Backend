@@ -4,6 +4,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using PizzaArena_API.Data;
 using PizzaArena_API.Models;
+using PizzaArena_API.Services.ChefSpecialFolder;
+using PizzaArena_API.Services.ChefSpecialFolder.IChefService;
+using PizzaArena_API.Services.GlobalSettingsFolder;
+using PizzaArena_API.Services.GlobalSettingsFolder.IGlobalService;
+using PizzaArena_API.Services.RestaurantsFolder;
+using PizzaArena_API.Services.RestaurantsFolder.IRestaurantsService;
 using PizzaArena_API.Services.UserFolder;
 using PizzaArena_API.Services.UserFolder.IUserService;
 using System.IdentityModel.Tokens.Jwt;
@@ -21,6 +27,9 @@ namespace PizzaArena_API
             builder.Services.AddDbContext<PizzArenaDbContext>();
             builder.Services.AddScoped<IUser, UserService>();
             builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
+            builder.Services.AddScoped<IChefSepcial, ChefSpecialService>();
+            builder.Services.AddScoped<IGlobalSettings, GlobalSettingsService>();
+            builder.Services.AddScoped<IRestaurants, RestaurantService>();
 
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<PizzArenaDbContext>().AddDefaultTokenProviders();
 
