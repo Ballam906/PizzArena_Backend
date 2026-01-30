@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PizzaArena_API.Services.CategoryFolder;
 using PizzaArena_API.Services.CategoryFolder.ICategoryService;
@@ -16,6 +17,7 @@ namespace PizzaArena_API.Controllers
             _icategory = icategory;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
@@ -23,6 +25,7 @@ namespace PizzaArena_API.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpGet("GetById")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -32,6 +35,7 @@ namespace PizzaArena_API.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles ="Admin")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] string name)
         {

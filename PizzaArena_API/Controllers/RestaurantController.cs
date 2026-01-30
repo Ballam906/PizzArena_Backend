@@ -18,6 +18,7 @@ namespace PizzaArena_API.Controllers
             _irestaurant = irestaurant;
         }
 
+        [Authorize]
         [HttpGet("GetAll")]
         public async Task<ActionResult> GetAll()
         {
@@ -25,6 +26,7 @@ namespace PizzaArena_API.Controllers
             return Ok(res);
         }
 
+        [Authorize]
         [HttpGet("GetById")]
         public async Task<ActionResult> GetById(int id)
         {

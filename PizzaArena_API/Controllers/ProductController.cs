@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using PizzaArena_API.Services.ProductFolder.IProductService;
 using PizzaArena_API.Services.ProductFolder.Dtos;
+using PizzaArena_API.Services.ProductFolder.IProductService;
 
 namespace PizzaArena_API.Controllers
 {
@@ -16,6 +17,7 @@ namespace PizzaArena_API.Controllers
             _product = product;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
@@ -23,6 +25,7 @@ namespace PizzaArena_API.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpGet("GetById")]
         public async Task<ActionResult> GetById(int id)
         {
@@ -30,6 +33,7 @@ namespace PizzaArena_API.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public async Task<ActionResult> DeleteProduct(int id)
         {
@@ -37,6 +41,7 @@ namespace PizzaArena_API.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> CreateProduct(ProductDto.ProductAddDto product)
         {
@@ -44,6 +49,7 @@ namespace PizzaArena_API.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public async Task<ActionResult> UpdateProduct(int id,ProductDto.ProductUpdateDto updproduct)
         {
