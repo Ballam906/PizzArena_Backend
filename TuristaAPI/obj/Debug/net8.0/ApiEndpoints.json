@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "TuristaAPI.Controllers.TuraController",
+    "Method": "GetAll",
+    "RelativePath": "api/Tura/All",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TuristaAPI.Controllers.TuraController",
+    "Method": "GetById",
+    "RelativePath": "api/Tura/ById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TuristaAPI.Controllers.UtvonalController",
+    "Method": "AddNew",
+    "RelativePath": "api/Utvonal/uj",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uj",
+        "Type": "TuristaAPI.Dtos.UtvonalUjDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

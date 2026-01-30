@@ -1,0 +1,55 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using PizzaArena_API.Services.ProductFolder.IProductService;
+using PizzaArena_API.Services.ProductFolder.Dtos;
+
+namespace PizzaArena_API.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ProductController : ControllerBase
+    {
+        private readonly IProduct _product;
+
+        public ProductController(IProduct product)
+        {
+            _product = product;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetAll()
+        {
+            var result = _product.GetProducts();
+            return Ok(result);
+        }
+
+        [HttpGet("GetById")]
+        public async Task<ActionResult> GetById(int id)
+        {
+            var result = _product.GetProductById(id);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteProduct(int id)
+        {
+            var result = _product.DeleteProduct(id);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateProduct(ProductDto.ProductAddDto product)
+        {
+            var result = _product.AddProduct(product);
+            return Ok(result);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateProduct(int id,ProductDto.ProductUpdateDto updproduct)
+        {
+            var result = _product.UpdateProduct(id, updproduct);
+            return Ok(result);
+        }
+
+    }
+}
