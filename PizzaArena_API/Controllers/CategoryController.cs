@@ -43,6 +43,7 @@ namespace PizzaArena_API.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public async Task<IActionResult> Update(int id, [FromBody] string name)
         {
@@ -50,6 +51,7 @@ namespace PizzaArena_API.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {

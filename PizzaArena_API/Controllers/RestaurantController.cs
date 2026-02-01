@@ -34,6 +34,7 @@ namespace PizzaArena_API.Controllers
             return Ok(res);
         }
 
+
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult> Add(RestaDto.RestaurantDto dto)
