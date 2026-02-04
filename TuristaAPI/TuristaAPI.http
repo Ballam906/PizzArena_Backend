@@ -1,6 +1,0 @@
-@TuristaAPI_HostAddress = http://localhost:5291
-
-GET {{TuristaAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
