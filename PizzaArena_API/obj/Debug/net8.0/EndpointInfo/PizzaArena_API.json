@@ -516,7 +516,7 @@
         }
       }
     },
-    "/api/OrderItem/GetById": {
+    "/api/OrderItem/GetByOrderId": {
       "get": {
         "tags": [
           "OrderItem"

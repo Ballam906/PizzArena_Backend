@@ -10,6 +10,8 @@ using PizzaArena_API.Services.GlobalSettingsFolder;
 using PizzaArena_API.Services.GlobalSettingsFolder.IGlobalService;
 using PizzaArena_API.Services.OrderFolder;
 using PizzaArena_API.Services.OrderFolder.IOrderService;
+using PizzaArena_API.Services.OrderItemFolder;
+using PizzaArena_API.Services.OrderItemFolder.IOrderItemService;
 using PizzaArena_API.Services.ProductFolder;
 using PizzaArena_API.Services.ProductFolder.IProductService;
 using PizzaArena_API.Services.RestaurantsFolder;
@@ -36,6 +38,7 @@ namespace PizzaArena_API
             builder.Services.AddScoped<IRestaurants, RestaurantService>();
             builder.Services.AddScoped<IOrder, OrderService>();
             builder.Services.AddScoped<IProduct, ProductService>();
+            builder.Services.AddScoped<IOrderItem, OrderItemService>();
 
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<PizzArenaDbContext>().AddDefaultTokenProviders();
 

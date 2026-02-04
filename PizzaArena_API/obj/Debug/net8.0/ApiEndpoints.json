@@ -333,7 +333,7 @@
   {
     "ContainingType": "PizzaArena_API.Controllers.OrderItemController",
     "Method": "GetById",
-    "RelativePath": "api/OrderItem/GetById",
+    "RelativePath": "api/OrderItem/GetByOrderId",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
