@@ -2,8 +2,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
+using PizzaArena_API.Controllers;
 using PizzaArena_API.Data;
 using PizzaArena_API.Models;
+using PizzaArena_API.Services.CategoryFolder;
+using PizzaArena_API.Services.CategoryFolder.ICategoryService;
 using PizzaArena_API.Services.ChefSpecialFolder;
 using PizzaArena_API.Services.ChefSpecialFolder.IChefService;
 using PizzaArena_API.Services.GlobalSettingsFolder;
@@ -39,6 +42,7 @@ namespace PizzaArena_API
             builder.Services.AddScoped<IOrder, OrderService>();
             builder.Services.AddScoped<IProduct, ProductService>();
             builder.Services.AddScoped<IOrderItem, OrderItemService>();
+            builder.Services.AddScoped<ICategory, CategoryService>();
 
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<PizzArenaDbContext>().AddDefaultTokenProviders();
 
