@@ -21,7 +21,7 @@ namespace PizzaArena_API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
-            var result = _product.GetProducts();
+            var result = await _product.GetProducts();
             return Ok(result);
         }
 
@@ -29,7 +29,7 @@ namespace PizzaArena_API.Controllers
         [HttpGet("GetById")]
         public async Task<ActionResult> GetById(int id)
         {
-            var result = _product.GetProductById(id);
+            var result = await _product.GetProductById(id);
             return Ok(result);
         }
 
@@ -37,7 +37,7 @@ namespace PizzaArena_API.Controllers
         [HttpDelete]
         public async Task<ActionResult> DeleteProduct(int id)
         {
-            var result = _product.DeleteProduct(id);
+            var result = await _product.DeleteProduct(id);
             return Ok(result);
         }
 
@@ -45,7 +45,7 @@ namespace PizzaArena_API.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateProduct(ProductDto.ProductAddDto product)
         {
-            var result = _product.AddProduct(product);
+            var result = await _product.AddProduct(product);
             return Ok(result);
         }
 
@@ -53,7 +53,7 @@ namespace PizzaArena_API.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateProduct(int id,ProductDto.ProductUpdateDto updproduct)
         {
-            var result = _product.UpdateProduct(id, updproduct);
+            var result = await _product.UpdateProduct(id, updproduct);
             return Ok(result);
         }
 
