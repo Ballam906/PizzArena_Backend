@@ -7,6 +7,7 @@ namespace PizzaArena_API.Services.OrderFolder.IOrderService
     {
         Task<object> GetOrders();
         Task<object> GetUserOrders(string userId);
+        Task<object> GetUserOrdersWithItems(string userId);
         Task<object> GetOrderById(int id);
         Task<object> AddOrder(OrderDto.OrderAddDto neworder);
         Task<object> DeleteOrder(int id);

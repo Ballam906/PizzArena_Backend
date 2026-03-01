@@ -10,5 +10,6 @@ namespace PizzaArena_API.Services.UserFolder.IUserService
         Task<object> AssignRole(string UserName, string roleName);
         Task<bool> IsInRoleAsync(string userId, string roleName);
         Task<object> DeleteUser(string currentUserId, string targetUserId);
+        Task<object> GetAllUser();
     }
 }

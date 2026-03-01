@@ -57,6 +57,12 @@ namespace PizzaArena_API.Services.UserFolder
             return new {result, message = "Felhasználó sikeresen törölve" };
         }
 
+        public async Task<object> GetAllUser()
+        {
+            var users = await _context.users.ToListAsync();
+            return users;
+        }
+
         public async Task<bool> IsInRoleAsync(string userId, string roleName)
         {
             var user = await _userManager.FindByIdAsync(userId);

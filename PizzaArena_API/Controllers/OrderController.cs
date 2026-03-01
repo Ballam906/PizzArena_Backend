@@ -39,6 +39,18 @@ namespace PizzaArena_API.Controllers
             return Ok(result);
         }
 
+        [HttpGet("MyOrdersWithItems")]
+        [Authorize]
+        public async Task<ActionResult> GetMyOrdersItems()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId)) return Unauthorized();
+
+            var result = await _order.GetUserOrdersWithItems(userId);
+            return Ok(result);
+        }
+
         [HttpGet("GetById")]
         [Authorize]
         public async Task<ActionResult> GetById(int id)

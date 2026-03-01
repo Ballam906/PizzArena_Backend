@@ -394,6 +394,18 @@
         }
       }
     },
+    "/api/Order/MyOrdersWithItems": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Order/GetById": {
       "get": {
         "tags": [
@@ -776,6 +788,18 @@
               "format": "int32"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/GetAllUser": {
+      "get": {
+        "tags": [
+          "User"
         ],
         "responses": {
           "200": {

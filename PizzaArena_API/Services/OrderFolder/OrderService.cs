@@ -84,6 +84,21 @@ namespace PizzaArena_API.Services.OrderFolder
             return new { message = "Ennek a felhasználónak még nincs rendelése." };
         }
 
+        public async Task<object> GetUserOrdersWithItems(string userId)
+        {
+            var userOrders = await _context.orders
+                .Where(x => x.User_Id == userId)
+                .Include(x => x.OrderItems)
+                .ToListAsync();
+
+            if (userOrders.Any())
+            {
+                return userOrders;
+            }
+
+            return new { message = "Ennek a felhasználónak még nincs rendelése." };
+        }
+
         public async Task<object> UpdateOrder(int id, OrderDto.UpdateOrderDto uporder)
         {
             var vane = await _context.orders.FirstOrDefaultAsync(x => x.Id == id);

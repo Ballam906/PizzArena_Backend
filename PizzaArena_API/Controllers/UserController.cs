@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaArena_API.Migrations;
 using PizzaArena_API.Services.UserFolder.IUserService;
+using System.Data;
 using static PizzaArena_API.Services.UserFolder.Dtos.UserDto;
 
 namespace PizzaArena_API.Controllers
@@ -18,6 +19,16 @@ namespace PizzaArena_API.Controllers
         {
             _user = user;
         }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("GetAllUser")]
+        public async Task<ActionResult> GetAllUser()
+        {
+            var result = await _user.GetAllUser();
+
+            return StatusCode(200, result);
+        }
+
 
         [HttpPost("register")]
         public async Task<ActionResult> AddNewUser(RegisterRequestDto registerRequestDto)
@@ -45,11 +56,10 @@ namespace PizzaArena_API.Controllers
             return NotFound(res);
         }
 
+
         [HttpDelete("deleteuser")]
         public async Task<ActionResult> DeleteUser(string userid)
         {
-            /*foreach (var c in User.Claims)
-                Console.WriteLine($"{c.Type} = {c.Value}");*/
 
             var currentUserId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)
                      ?? User.FindFirst("sub");

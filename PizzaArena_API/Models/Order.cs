@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PizzaArena_API.Services.OrderItemFolder.IOrderItemService;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -22,5 +23,7 @@ namespace PizzaArena_API.Models
         [JsonIgnore]
         public User User { get; set; }
         public DateTime OrderTime { get; set; } = DateTime.Now;
+
+        public ICollection<Order_Item> OrderItems { get; set; }
     }
 }
