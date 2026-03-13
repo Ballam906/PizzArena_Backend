@@ -43,7 +43,7 @@ namespace PizzaArena_API.Services.ProductFolder
                 return new { message = "Sikeres törlés" };
             }
 
-            return new { message = "Nincs ilyen produkt" };
+            return new { message = "Nincs ilyen termék" };
         }
 
         public async Task<object> GetProductById(int id)
@@ -54,7 +54,7 @@ namespace PizzaArena_API.Services.ProductFolder
                 return vane;
             }
 
-            return new { message = "Nincs ilyen produkt" };
+            return new { message = "Nincs ilyen termék" };
         }
 
         public async Task<object> GetProducts()
@@ -68,7 +68,7 @@ namespace PizzaArena_API.Services.ProductFolder
             var vane = await _context.products.FirstOrDefaultAsync(x => x.Id == id);
             if (vane == null)
             {
-                return new { message = "Nincs ilyen produkt!" };
+                return new { message = "Nincs ilyen termék!" };
             }
             vane.Price = upproduct.price;
             vane.ModTime = DateTime.Now;

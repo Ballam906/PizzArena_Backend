@@ -19,6 +19,7 @@ using PizzaArena_API.Services.ProductFolder;
 using PizzaArena_API.Services.ProductFolder.IProductService;
 using PizzaArena_API.Services.RestaurantsFolder;
 using PizzaArena_API.Services.RestaurantsFolder.IRestaurantsService;
+using PizzaArena_API.Services.SettingFolder;
 using PizzaArena_API.Services.UserFolder;
 using PizzaArena_API.Services.UserFolder.IUserService;
 using System.IdentityModel.Tokens.Jwt;
@@ -29,7 +30,7 @@ namespace PizzaArena_API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +44,7 @@ namespace PizzaArena_API
             builder.Services.AddScoped<IProduct, ProductService>();
             builder.Services.AddScoped<IOrderItem, OrderItemService>();
             builder.Services.AddScoped<ICategory, CategoryService>();
+            
 
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<PizzArenaDbContext>().AddDefaultTokenProviders();
 
@@ -75,6 +77,12 @@ namespace PizzaArena_API
                 };
             });
 
+
+
+            builder.Services.Configure<AdminSet>(builder.Configuration.GetSection("AdminUser"));
+            builder.Services.Configure<GlobalSettings>(builder.Configuration.GetSection("GlobalSettings"));
+            builder.Services.AddTransient<SettingSetService>();
+
             
 
             // Add services to the container.
@@ -104,7 +112,16 @@ namespace PizzaArena_API
 
             app.MapControllers();
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var service = scope.ServiceProvider.GetRequiredService<SettingSetService>();
+                await service.SetAdmin();
+                await service.SetGlobalSettings();
+            }
+
             app.Run();
+
+            
         }
     }
 }

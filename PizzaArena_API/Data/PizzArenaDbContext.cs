@@ -24,7 +24,7 @@ namespace PizzaArena_API.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=localhost;database=pizza34;user=root;password=;ssl mode=;");
+            optionsBuilder.UseMySQL("server=localhost;database=pizzaarena;user=root;password=;ssl mode=;");
         }
     }
 }

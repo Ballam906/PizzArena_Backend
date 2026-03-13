@@ -141,3 +141,6 @@ C:\Users\autowolf\Documents\GitHub\PizzArena_Backend\PizzaArena_API\obj\Debug\ne
 C:\Users\autowolf\Documents\GitHub\PizzArena_Backend\PizzaArena_API\obj\Debug\net8.0\PizzaArena_API.pdb
 C:\Users\autowolf\Documents\GitHub\PizzArena_Backend\PizzaArena_API\obj\Debug\net8.0\PizzaArena_API.genruntimeconfig.cache
 C:\Users\autowolf\Documents\GitHub\PizzArena_Backend\PizzaArena_API\obj\Debug\net8.0\ref\PizzaArena_API.dll
+C:\Users\AutoWolf\Documents\GitHub\PizzArena_Backend\PizzaArena_API\obj\Debug\net8.0\swae.build.ex.cache
+C:\Users\AutoWolf\Documents\GitHub\PizzArena_Backend\PizzaArena_API\bin\Debug\net8.0\MySqlConnector.dll
+C:\Users\AutoWolf\Documents\GitHub\PizzArena_Backend\PizzaArena_API\bin\Debug\net8.0\Pomelo.EntityFrameworkCore.MySql.dll

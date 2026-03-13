@@ -22,9 +22,9 @@ namespace PizzaArena_API.Services.UserFolder
             _tokenGenerator = tokenGenerator;
         }
 
-        public async Task<object> AssignRole(string UserName, string roleName)
+        public async Task<object> AssignRole(string userName, string roleName)
         {
-            var user = await _context.users.FirstOrDefaultAsync(x => x.NormalizedUserName == UserName.ToUpper());
+            var user = await _context.users.FirstOrDefaultAsync(x => x.NormalizedUserName == userName.ToUpper());
 
             if (user != null)
             {

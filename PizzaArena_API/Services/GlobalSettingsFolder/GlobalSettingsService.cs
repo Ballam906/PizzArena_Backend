@@ -32,7 +32,7 @@ namespace PizzaArena_API.Services.GlobalSettingsFolder
                 _context.globalSettings.Add(settings);
                 await _context.SaveChangesAsync();
 
-                return new { result = settings, message = "Beállítások létrehozva (első rekord)." };
+                return new { result = settings, message = "Beállítások létrehozva." };
             }
 
             return new { result = settings, message = "Beállítások betöltve" };
