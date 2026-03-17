@@ -23,7 +23,7 @@ namespace PizzaArena_API.Services.GlobalSettingsFolder
             {
                 settings = new GlobalSettings
                 {
-                    RestaurantName = "Etteremneve",
+                    ContactEmail = "ContactEmail",
                     DeliveryTime = "1",
                     FacebookUrl = "facebookurl",
                     InstagramUrl = "instagramurl"
@@ -38,17 +38,18 @@ namespace PizzaArena_API.Services.GlobalSettingsFolder
             return new { result = settings, message = "Beállítások betöltve" };
         }
 
-        public async Task<object> UpdateSettings(GlobalSettingsDto.GlobalDto settingsDto)
+        public async Task<object> UpdateSettings(int id,GlobalSettingsDto.GlobalDto settingsDto)
         {
-            var settings = await _context.globalSettings.FirstOrDefaultAsync();
-
-            settings = new GlobalSettings
+            var settings = await _context.globalSettings.FirstOrDefaultAsync(x => x.Id == id);
+            if(settings == null)
             {
-                RestaurantName = settingsDto.RestaurantName,
-                DeliveryTime = settingsDto.DeliveryTime,
-                FacebookUrl = settingsDto.FacebookUrl,
-                InstagramUrl = settingsDto.InstagramUrl
-            };
+                return new { message = "Nincs ilyen beállítás!" };
+            }
+
+            settings.ContactEmail = settingsDto.ContactEmail;
+            settings.DeliveryTime = settingsDto.DeliveryTime;
+            settings.FacebookUrl = settingsDto.FacebookUrl;
+            settings.InstagramUrl = settingsDto.InstagramUrl;
 
             _context.globalSettings.Update(settings);
             await _context.SaveChangesAsync();

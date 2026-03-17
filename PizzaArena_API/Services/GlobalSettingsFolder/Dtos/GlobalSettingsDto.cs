@@ -3,7 +3,7 @@
     public class GlobalSettingsDto
     {
         public record GlobalDto(
-            string RestaurantName,
+            string ContactEmail,
             string DeliveryTime,
             string FacebookUrl,
             string InstagramUrl

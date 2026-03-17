@@ -25,10 +25,10 @@ namespace PizzaArena_API.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPost]
-        public async Task<ActionResult> Update(GlobalSettingsDto.GlobalDto dto)
+        [HttpPut]
+        public async Task<ActionResult> Update(int id,GlobalSettingsDto.GlobalDto dto)
         {
-            var res = await _globalsettings.UpdateSettings(dto);
+            var res = await _globalsettings.UpdateSettings(id, dto);
             return Ok(res);
         }
     }

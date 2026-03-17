@@ -70,7 +70,7 @@ namespace PizzaArena_API.Services.SettingFolder
             {
                 var global = new GlobalSettings
                 {
-                    RestaurantName = _globalSettings.RestaurantName,
+                    ContactEmail = _globalSettings.ContactEmail,
                     DeliveryTime = _globalSettings.DeliveryTime,
                     FacebookUrl = _globalSettings.FacebookUrl,
                     InstagramUrl = _globalSettings.InstagramUrl

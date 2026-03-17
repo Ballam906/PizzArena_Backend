@@ -5,6 +5,6 @@ namespace PizzaArena_API.Services.GlobalSettingsFolder.IGlobalService
     public interface IGlobalSettings
     {
         Task<object> GetSettings();
-        Task<object> UpdateSettings(GlobalDto settingsDto);
+        Task<object> UpdateSettings(int id,GlobalDto settingsDto);
     }
 }

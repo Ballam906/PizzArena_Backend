@@ -252,9 +252,19 @@
           }
         }
       },
-      "post": {
+      "put": {
         "tags": [
           "GlobalSettings"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -988,7 +998,7 @@
       "GlobalDto": {
         "type": "object",
         "properties": {
-          "restaurantName": {
+          "contactEmail": {
             "type": "string",
             "nullable": true
           },
