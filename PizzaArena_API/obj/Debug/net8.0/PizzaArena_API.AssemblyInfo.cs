@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PizzaArena_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c93f13fef51e0a66098efd88139166db5467c20")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d9d399b8d2eadbee91d318cb9edc1307722baac")]
 [assembly: System.Reflection.AssemblyProductAttribute("PizzaArena_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PizzaArena_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

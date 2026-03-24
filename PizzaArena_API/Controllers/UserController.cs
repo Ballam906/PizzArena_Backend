@@ -103,6 +103,7 @@ namespace PizzaArena_API.Controllers
             return NotFound(res);
         }
 
+
         [Authorize(Roles ="Admin")]
         [HttpPost("assignrole")]
         public async Task<ActionResult> AddRole(string UserName, string RoleName)
