@@ -33,14 +33,16 @@ namespace PizzaArena_API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> AddNewUser(RegisterRequestDto registerRequestDto)
         {
-            var user = await _user.Register(registerRequestDto);
+            // A 'user' itt valójában az az object, amit a Service return-ölt (result és message mezőkkel)
+            dynamic response = await _user.Register(registerRequestDto);
 
-            if (user != null)
+            if (response.message == "Sikeres regisztráció.")
             {
-                return StatusCode(201, user);
+                return StatusCode(201, response); // 201 = Siker
             }
 
-            return BadRequest(new { result = "", message = "Sikertelen regisztráció" });
+            // Ha bármi más a message (pl. jelszó hiba), akkor 400-at küldünk
+            return BadRequest(response); // 400 = Hiba
         }
 
         [HttpPost("login")]

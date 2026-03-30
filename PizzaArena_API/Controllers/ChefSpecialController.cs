@@ -17,7 +17,7 @@ namespace PizzaArena_API.Controllers
             _chefSepcial = chefSepcial;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("GetAll")]
         public async Task<ActionResult> GetAll()
         {
