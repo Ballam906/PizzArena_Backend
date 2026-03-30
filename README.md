@@ -30,3 +30,6 @@ Az adatbázis az **Entity Framework Core Migrations** segítségével épül fel
     Futtasd a következő parancsot a *Package Manager Console*-ban:
     update-database
 4.  **Indítás:** Nyomj `F5`-öt a Visual Studio-ban. A böngészőben automatikusan megnyílik a **Swagger UI** , ahol tesztelheted a végpontokat.
+
+
+![Vizualizáció](docs/images/pelda.PNG)
