@@ -17,7 +17,7 @@ namespace PizzaArena_API.Controllers
             _icategory = icategory;
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

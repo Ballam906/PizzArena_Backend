@@ -34,6 +34,26 @@ namespace PizzaArena_API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowFrontend",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:5173") // frontend cím
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    });
+            });
+
+
+
+
+
+
+
+
             builder.Services.AddDbContext<PizzArenaDbContext>();
             builder.Services.AddScoped<IUser, UserService>();
             builder.Services.AddScoped<ITokenGenerator, TokenGenerator>();
@@ -93,6 +113,8 @@ namespace PizzaArena_API
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            app.UseCors("AllowFrontend");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

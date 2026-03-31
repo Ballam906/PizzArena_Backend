@@ -18,7 +18,7 @@ namespace PizzaArena_API.Controllers
             _irestaurant = irestaurant;
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpGet("GetAll")]
         public async Task<ActionResult> GetAll()
         {
