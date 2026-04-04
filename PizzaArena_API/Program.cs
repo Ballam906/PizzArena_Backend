@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PizzaArena_API.Controllers;
 using PizzaArena_API.Data;
@@ -48,9 +49,10 @@ namespace PizzaArena_API
             });
 
 
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-
-
+            builder.Services.AddDbContext<PizzArenaDbContext>(options =>
+                options.UseMySQL(connectionString));
 
 
 

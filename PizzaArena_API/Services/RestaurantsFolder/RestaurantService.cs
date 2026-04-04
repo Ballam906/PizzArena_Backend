@@ -15,70 +15,58 @@ namespace PizzaArena_API.Services.RestaurantsFolder
             _context = context;
         }
 
-        public async Task<object> AddRestaurant(RestaDto.RestaurantDto dto)
+        public async Task<Restaurant> AddRestaurant(RestaDto.RestaurantDto dto)
         {
-            var newRestaurant = new Restaurant
+            var restaurant = new Restaurant
             {
                 Name = dto.Name,
                 Description = dto.Description,
                 ImageUrl = dto.ImageUrl,
                 OpeningHours = dto.OpeningHours,
-                Address = dto.Address
+                Address = dto.Address,
+                ContactPhone = dto.ContactPhone,
             };
 
-            _context.restaurants.Add(newRestaurant);
+            _context.restaurants.Add(restaurant);
             await _context.SaveChangesAsync();
+            return restaurant;
 
-            return new { result = newRestaurant, message = "Étterem sikeresen hozzáadva." };
+
         }
 
-        public async Task<object> DeleteRestaurant(int id)
+        public async Task<bool> DeleteRestaurant(int id)
         {
             var restaurant = await _context.restaurants.FindAsync(id);
-            if (restaurant == null)
-            {
-                return new { result = "", message = "Étterem nem található a törléshez." };
-            }
-
+            if (restaurant == null) return false;
             _context.restaurants.Remove(restaurant);
             await _context.SaveChangesAsync();
-
-            return new { result = "", message = "Étterem sikeresen törölve." };
+            return true;
         }
 
-        public async Task<object> GetAllRestaurants()
+        public async Task<IEnumerable<Restaurant>> GetAllRestaurants()
         {
-            var restaurants = await _context.restaurants.ToListAsync();
-            return new { result = restaurants, message = "Éttermek sikeresen lekérve." };
+            return await _context.restaurants.ToListAsync();
         }
 
-        public async Task<object> GetRestaurantById(int id)
+        public async Task<Restaurant?> GetRestaurantById(int id)
         {
-            var restaurant = await _context.restaurants.FindAsync(id);
-            if (restaurant == null)
-            {
-                return new { result = "", message = "Étterem nem található." };
-            }
-            return new { result = restaurant, message = "Étterem megtalálva." };
+            return await _context.restaurants.FindAsync(id);
         }
 
-        public async Task<object> UpdateRestaurant(int id, RestaDto.RestaurantDto dto)
+        public async Task<Restaurant?> UpdateRestaurant(RestaDto.RestaurantUpdateDto dto)
         {
-            var restaurant = await _context.restaurants.FindAsync(id);
-            if (restaurant == null)
-            {
-                return new { result = "", message = "Nem található az étterem a módosításhoz." };
-            }
+            var restaurant = await _context.restaurants.FindAsync(dto.Id);
+            if (restaurant == null) return null;
 
             restaurant.Name = dto.Name;
             restaurant.Description = dto.Description;
-            restaurant.ImageUrl = dto.ImageUrl;
-            restaurant.OpeningHours = dto.OpeningHours;
+            restaurant.ContactPhone = dto.ContactPhone;
             restaurant.Address = dto.Address;
+            restaurant.OpeningHours = dto.OpeningHours;
+            restaurant.ImageUrl = dto.ImageUrl;
 
-            _context.restaurants.Update(restaurant);
             await _context.SaveChangesAsync();
-            return new { result = restaurant, message = "Étterem sikeresen frissítve." };
+            return restaurant;
         }
     }
 }

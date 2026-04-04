@@ -7,7 +7,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PizzaArena_API.Models.Category, PizzaArena_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.CategoryController",
@@ -18,54 +28,27 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "name",
-        "Type": "System.String",
+        "Name": "dto",
+        "Type": "PizzaArena_API.Services.CategoryFolder.Dtos.CategoryDto\u002BCreateCategoryDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.CategoryController",
-    "Method": "Update",
-    "RelativePath": "api/Category",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "name",
-        "Type": "System.String",
-        "IsRequired": true
+        "Type": "PizzaArena_API.Models.Category",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.CategoryController",
-    "Method": "Delete",
-    "RelativePath": "api/Category",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.CategoryController",
     "Method": "GetById",
-    "RelativePath": "api/Category/GetById",
+    "RelativePath": "api/Category/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -73,10 +56,87 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.Category",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.CategoryController",
+    "Method": "Update",
+    "RelativePath": "api/Category/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "PizzaArena_API.Services.CategoryFolder.Dtos.CategoryDto\u002BUpdateCategoryDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.Category",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.CategoryController",
+    "Method": "Delete",
+    "RelativePath": "api/Category/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.ChefSpecialController",
+    "Method": "GetAll",
+    "RelativePath": "api/ChefSpecial",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PizzaArena_API.Models.ChefSpecial, PizzaArena_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.ChefSpecialController",
@@ -87,12 +147,22 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "chefAddDto",
+        "Name": "dto",
         "Type": "PizzaArena_API.Services.ChefSpecialFolder.Dtos.ChefDto\u002BChefAddDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.ChefSpecial",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.ChefSpecialController",
@@ -103,17 +173,53 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "chefModDto",
+        "Name": "dto",
         "Type": "PizzaArena_API.Services.ChefSpecialFolder.Dtos.ChefDto\u002BChefModDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.ChefSpecial",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.ChefSpecialController",
+    "Method": "GetById",
+    "RelativePath": "api/ChefSpecial/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.ChefSpecial",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.ChefSpecialController",
     "Method": "Delete",
-    "RelativePath": "api/ChefSpecial",
+    "RelativePath": "api/ChefSpecial/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -121,33 +227,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.ChefSpecialController",
-    "Method": "GetAll",
-    "RelativePath": "api/ChefSpecial/GetAll",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.ChefSpecialController",
-    "Method": "GetById",
-    "RelativePath": "api/ChefSpecial/GetById",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -160,7 +240,17 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.GlobalSettings",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.GlobalSettingsController",
@@ -171,17 +261,22 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "dto",
         "Type": "PizzaArena_API.Services.GlobalSettingsFolder.Dtos.GlobalSettingsDto\u002BGlobalDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.GlobalSettings",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.OrderController",
@@ -191,22 +286,6 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.OrderController",
-    "Method": "DeleteOrder",
-    "RelativePath": "api/Order",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
     "ReturnTypes": []
   },
   {
@@ -227,8 +306,40 @@
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.OrderController",
+    "Method": "GetById",
+    "RelativePath": "api/Order/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.OrderController",
+    "Method": "DeleteOrder",
+    "RelativePath": "api/Order/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.OrderController",
     "Method": "UpdateOrder",
-    "RelativePath": "api/Order",
+    "RelativePath": "api/Order/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -236,7 +347,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       },
       {
         "Name": "updorder",
@@ -248,19 +359,50 @@
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.OrderController",
-    "Method": "GetById",
-    "RelativePath": "api/Order/GetById",
-    "HttpMethod": "GET",
+    "Method": "UpdateStatus",
+    "RelativePath": "api/Order/{id}/status",
+    "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
+      },
+      {
+        "Name": "updorder",
+        "Type": "PizzaArena_API.Services.OrderFolder.Dtos.OrderDto\u002BUpdateOrderStatusDto",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.OrderController",
+    "Method": "AddFullOrder",
+    "RelativePath": "api/Order/FullOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "PizzaArena_API.Services.OrderFolder.Dtos.OrderCreateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.Order",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.OrderController",
@@ -284,71 +426,34 @@
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.OrderItemController",
-    "Method": "GetAll",
-    "RelativePath": "api/OrderItem",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.OrderItemController",
-    "Method": "Delete",
-    "RelativePath": "api/OrderItem",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.OrderItemController",
-    "Method": "Create",
+    "Method": "AddItem",
     "RelativePath": "api/OrderItem",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dto",
+        "Name": "newItem",
         "Type": "PizzaArena_API.Services.OrderItemFolder.Dtos.OrderItemDto\u002BOrderItemAddDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.OrderItemController",
-    "Method": "Update",
-    "RelativePath": "api/OrderItem",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
+    "ReturnTypes": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "dto",
-        "Type": "PizzaArena_API.Services.OrderItemFolder.Dtos.OrderItemDto\u002BOrderItemUpdateDto",
-        "IsRequired": true
+        "Type": "PizzaArena_API.Models.Order_Item",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
       }
-    ],
-    "ReturnTypes": []
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.OrderItemController",
     "Method": "GetById",
-    "RelativePath": "api/OrderItem/GetByOrderId",
+    "RelativePath": "api/OrderItem/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -356,25 +461,25 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.Order_Item",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
-    "ContainingType": "PizzaArena_API.Controllers.ProductController",
-    "Method": "GetAll",
-    "RelativePath": "api/Product",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.ProductController",
-    "Method": "DeleteProduct",
-    "RelativePath": "api/Product",
+    "ContainingType": "PizzaArena_API.Controllers.OrderItemController",
+    "Method": "DeleteItem",
+    "RelativePath": "api/OrderItem/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -382,52 +487,134 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.ProductController",
-    "Method": "CreateProduct",
-    "RelativePath": "api/Product",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "product",
-        "Type": "PizzaArena_API.Services.ProductFolder.Dtos.ProductDto\u002BProductAddDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "PizzaArena_API.Controllers.ProductController",
-    "Method": "UpdateProduct",
-    "RelativePath": "api/Product",
-    "HttpMethod": "PUT",
+    "ContainingType": "PizzaArena_API.Controllers.OrderItemController",
+    "Method": "UpdateQuantity",
+    "RelativePath": "api/OrderItem/{id}/quantity",
+    "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       },
       {
-        "Name": "updproduct",
-        "Type": "PizzaArena_API.Services.ProductFolder.Dtos.ProductDto\u002BProductUpdateDto",
+        "Name": "newQuantity",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
+    "ContainingType": "PizzaArena_API.Controllers.OrderItemController",
+    "Method": "GetByOrder",
+    "RelativePath": "api/OrderItem/order/{orderId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PizzaArena_API.Models.Order_Item, PizzaArena_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.ProductController",
+    "Method": "GetAllProduct",
+    "RelativePath": "api/Product",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PizzaArena_API.Models.Product, PizzaArena_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.ProductController",
+    "Method": "Add",
+    "RelativePath": "api/Product",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "PizzaArena_API.Services.ProductFolder.Dtos.ProductDto\u002BProductAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.Product",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.ProductController",
+    "Method": "Modify",
+    "RelativePath": "api/Product",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "PizzaArena_API.Services.ProductFolder.Dtos.ProductDto\u002BProductUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.Product",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "PizzaArena_API.Controllers.ProductController",
     "Method": "GetById",
-    "RelativePath": "api/Product/GetById",
+    "RelativePath": "api/Product/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -435,10 +622,56 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.Product",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.ProductController",
+    "Method": "Delete",
+    "RelativePath": "api/Product/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.RestaurantController",
+    "Method": "GetAllRestaurant",
+    "RelativePath": "api/Restaurant",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[PizzaArena_API.Models.Restaurant, PizzaArena_API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.RestaurantController",
@@ -454,33 +687,74 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.Restaurant",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.RestaurantController",
-    "Method": "Update",
+    "Method": "Modify",
     "RelativePath": "api/Restaurant",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
         "Name": "dto",
-        "Type": "PizzaArena_API.Services.RestaurantsFolder.Dtos.RestaDto\u002BRestaurantDto",
+        "Type": "PizzaArena_API.Services.RestaurantsFolder.Dtos.RestaDto\u002BRestaurantUpdateDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.Restaurant",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.RestaurantController",
+    "Method": "GetById",
+    "RelativePath": "api/Restaurant/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "PizzaArena_API.Models.Restaurant",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.RestaurantController",
     "Method": "Delete",
-    "RelativePath": "api/Restaurant",
+    "RelativePath": "api/Restaurant/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -488,33 +762,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.RestaurantController",
-    "Method": "GetAll",
-    "RelativePath": "api/Restaurant/GetAll",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "PizzaArena_API.Controllers.RestaurantController",
-    "Method": "GetById",
-    "RelativePath": "api/Restaurant/GetById",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

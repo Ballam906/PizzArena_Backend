@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Storage.Json;
 using PizzaArena_API.Data;
 using PizzaArena_API.Models;
+using PizzaArena_API.Services.CategoryFolder.Dtos;
 using PizzaArena_API.Services.CategoryFolder.ICategoryService;
 using System.Xml.Linq;
 
@@ -16,77 +17,47 @@ namespace PizzaArena_API.Services.CategoryFolder
             _context = context;
         }
 
-        public async Task<object> CategoryAdd(string Name)
+        public async Task<Category> CategoryAdd(CategoryDto.CreateCategoryDto dto)
         {
-            if (string.IsNullOrEmpty(Name))
-            {
-                return new { result = "", message = "Nincs név megadva" };
-            }
-
-            var category = new Category
-            {
-                Name = Name,
-            };
-
+            var category = new Category { Name = dto.Name };
             _context.categories.Add(category);
             await _context.SaveChangesAsync();
-
-            return new { result = category, message = "Új kategória hozzáadva." };
+            return category;
         }
 
-        public async Task<object> CategoryDelete(int id)
+        public async Task<bool> CategoryDelete(int id)
         {
-            var category = await _context.categories.FirstOrDefaultAsync(x => x.Id == id);
-
-            if (category == null)
-            {
-                return new { result = "", message = "Nincs ilyen kategória." };
-            }
+            var category = await _context.categories.FindAsync(id);
+            if (category == null) return false;
 
             _context.categories.Remove(category);
             await _context.SaveChangesAsync();
-
-            return new { result = "", message = "Sikeres törlés" };
+            return true;
         }
 
-        public async Task<object> CategoryModify(int id, string Name)
+        public async Task<Category?> CategoryModify(int id, CategoryDto.UpdateCategoryDto dto)
         {
-            var category = await _context.categories.FirstOrDefaultAsync(x => x.Id == id);
+            var category = await _context.categories.FindAsync(id);
 
             if (category == null)
             {
-                return new { result = "", message = "Nincs ilyen kategória." };
+                return null;
             }
 
-            if (string.IsNullOrEmpty(Name))
-            {
-                return new { result = "", message = "A megadott termék nem létezik." };
-            }
-
-            category.Name = Name;
-            _context.categories.Update(category);
+            category.Name = dto.Name;
             await _context.SaveChangesAsync();
+            return category;
 
-            return new { result = category, message = "Sikeres módosítás" };
         }
 
-        public async Task<object> GetAllCategory()
+        public async Task<IEnumerable<Category>> GetAllCategory()
         {
-            var categories = await _context.categories.ToListAsync();
-
-            return new { result = categories, message = "Sikeres lekérdezés" };
+            return await _context.categories.ToListAsync();
         }
 
-        public async Task<object> GetCategoryById(int id)
+        public async Task<Category?> GetCategoryById(int id)
         {
-            var category = await _context.categories.FirstOrDefaultAsync(x => x.Id == id);
-
-            if (category == null)
-            {
-                return new { result = "", message = "Nincs ilyen kategória" };
-            }
-
-            return new { result = category, message = "Sikeres lekérdezés" };
+            return await _context.categories.FindAsync(id);
         }
     }
 }

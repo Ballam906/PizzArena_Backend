@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PizzaArena_API.Models;
+using PizzaArena_API.Services.ProductFolder.Dtos;
 using PizzaArena_API.Services.RestaurantsFolder;
 using PizzaArena_API.Services.RestaurantsFolder.Dtos;
 using PizzaArena_API.Services.RestaurantsFolder.IRestaurantsService;
@@ -18,45 +20,40 @@ namespace PizzaArena_API.Controllers
             _irestaurant = irestaurant;
         }
 
-        //[Authorize]
-        [HttpGet("GetAll")]
-        public async Task<ActionResult> GetAll()
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Restaurant>>> GetAllRestaurant()
         {
-            var res = await _irestaurant.GetAllRestaurants();
-            return Ok(res);
+            return Ok(await _irestaurant.GetAllRestaurants());
         }
 
-        [Authorize]
-        [HttpGet("GetById")]
-        public async Task<ActionResult> GetById(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Restaurant>> GetById(int id)
         {
             var res = await _irestaurant.GetRestaurantById(id);
-            return Ok(res);
+            return res == null ? NotFound() : Ok(res);
         }
 
-
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles ="Admin")]
         [HttpPost]
-        public async Task<ActionResult> Add(RestaDto.RestaurantDto dto)
+        public async Task<ActionResult<Restaurant>> Add(RestaDto.RestaurantDto dto)
         {
-            var res = await _irestaurant.AddRestaurant(dto);
-            return Ok(res);
+            return Ok(await _irestaurant.AddRestaurant(dto));
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPut]
-        public async Task<ActionResult> Update(int id, RestaDto.RestaurantDto dto)
+        public async Task<ActionResult<Restaurant>> Modify(RestaDto.RestaurantUpdateDto dto)
         {
-            var res = await _irestaurant.UpdateRestaurant(id, dto);
-            return Ok(res);
+            var res = await _irestaurant.UpdateRestaurant(dto);
+            return res == null ? NotFound() : Ok(res);
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var res = await _irestaurant.DeleteRestaurant(id);
-            return Ok(res);
+            var success = await _irestaurant.DeleteRestaurant(id);
+            return success ? Ok(new { message = "Étterem sikeresen törölve." }) : NotFound();
         }
     }
 }

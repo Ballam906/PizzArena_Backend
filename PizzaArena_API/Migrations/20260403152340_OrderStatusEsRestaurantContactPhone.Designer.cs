@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaArena_API.Data;
 
@@ -10,9 +11,11 @@ using PizzaArena_API.Data;
 namespace PizzaArena_API.Migrations
 {
     [DbContext(typeof(PizzArenaDbContext))]
-    partial class PizzArenaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260403152340_OrderStatusEsRestaurantContactPhone")]
+    partial class OrderStatusEsRestaurantContactPhone
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,9 +245,6 @@ namespace PizzaArena_API.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("RestaurantId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -257,8 +257,6 @@ namespace PizzaArena_API.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RestaurantId");
 
                     b.HasIndex("User_Id");
 
@@ -498,19 +496,11 @@ namespace PizzaArena_API.Migrations
 
             modelBuilder.Entity("PizzaArena_API.Models.Order", b =>
                 {
-                    b.HasOne("PizzaArena_API.Models.Restaurant", "Restaurant")
-                        .WithMany()
-                        .HasForeignKey("RestaurantId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("PizzaArena_API.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("User_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Restaurant");
 
                     b.Navigation("User");
                 });

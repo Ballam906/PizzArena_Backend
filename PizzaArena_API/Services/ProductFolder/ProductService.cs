@@ -15,73 +15,65 @@ namespace PizzaArena_API.Services.ProductFolder
             _context = context;
         }
 
-        public async Task<object> AddProduct(ProductDto.ProductAddDto newproduct)
+        public async Task<Product> AddProduct(ProductDto.ProductAddDto newproduct)
         {
-            var newp = new Product
+            var product = new Product
             {
-                Price = newproduct.price,
                 CategoryId = newproduct.CategoryId,
                 Name = newproduct.name,
                 Description = newproduct.description,
+                Price = newproduct.price,
                 IsAvailable = newproduct.IsAvailable,
-                Image_Url = newproduct.Image_Url,
+                Image_Url = newproduct.Image_Url
 
             };
 
-            _context.products.Add(newp);
+            _context.products.Add(product);
             await _context.SaveChangesAsync();
-            return newproduct;
+            return product;
         }
 
-        public async Task<object> DeleteProduct(int id)
+        public async Task<bool> DeleteProduct(int id)
         {
-            var vane = await _context.products.FirstOrDefaultAsync(x => x.Id == id);
-            if (vane != null)
+            var product = await _context.products.FindAsync(id);
+            if (product == null)
             {
-                _context.products.Remove(vane);
-                await _context.SaveChangesAsync();
-                return new { message = "Sikeres törlés" };
+                return false;
             }
 
-            return new { message = "Nincs ilyen termék" };
-        }
-
-        public async Task<object> GetProductById(int id)
-        {
-            var vane = await _context.products.FirstOrDefaultAsync(x => x.Id == id);
-            if (vane != null)
-            {
-                return vane;
-            }
-
-            return new { message = "Nincs ilyen termék" };
-        }
-
-        public async Task<object> GetProducts()
-        {
-            var products = await _context.products.ToListAsync();
-            return products;
-        }
-
-        public async Task<object> UpdateProduct(int id, ProductDto.ProductUpdateDto upproduct)
-        {
-            var vane = await _context.products.FirstOrDefaultAsync(x => x.Id == id);
-            if (vane == null)
-            {
-                return new { message = "Nincs ilyen termék!" };
-            }
-            vane.Price = upproduct.price;
-            vane.ModTime = DateTime.Now;
-            vane.CategoryId = upproduct.CategoryId;
-            vane.Description = upproduct.description;
-            vane.IsAvailable = upproduct.IsAvailable;
-            vane.Image_Url = upproduct.Image_Url;
-            vane.Name = upproduct.name;
-
-            _context.products.Update(vane);
+             _context.products.Remove(product);
             await _context.SaveChangesAsync();
+            return true;
+        }
 
-            return new { result = vane, message = "Sikeres frissítés" };
+        public async Task<Product?> GetProductById(int id)
+        {
+            return await _context.products.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<Product>> GetProducts()
+        {
+            return await _context.products.ToListAsync();
+        }
+
+        public async Task<Product?> UpdateProduct(ProductDto.ProductUpdateDto upproduct)
+        {
+            var product = await _context.products.FindAsync(upproduct.Id);
+            if (product == null) return null;
+
+            product.Description = upproduct.description;
+            product.Price = upproduct.price;
+            product.IsAvailable = upproduct.IsAvailable;
+            product.Name = upproduct.name;
+            product.CategoryId = upproduct.CategoryId;
+            product.Image_Url = upproduct.Image_Url;
+            product.ModTime = DateTime.Now;
+
+            
+            //_context.products.Update(product);
+            await _context.SaveChangesAsync();
+            return product;
+
         }
     }
 }

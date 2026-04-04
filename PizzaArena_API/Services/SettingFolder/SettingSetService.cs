@@ -23,19 +23,6 @@ namespace PizzaArena_API.Services.SettingFolder
             _context = context;
         }
 
-
-        //public SettingSetService(
-        //    UserManager<User> userManager,
-        //    RoleManager<IdentityRole> roleManager,
-        //    IOptions<AdminSet> settings)
-        //{
-        //    _userManager = userManager;
-        //    _roleManager = roleManager;
-        //    _settings = settings.Value;
-        //}
-
-
-
         public async Task SetAdmin()
         {
             var admin = await _userManager.FindByNameAsync(_adminsettings.UserName);

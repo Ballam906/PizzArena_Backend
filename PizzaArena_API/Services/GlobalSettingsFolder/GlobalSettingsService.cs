@@ -15,46 +15,28 @@ namespace PizzaArena_API.Services.GlobalSettingsFolder
             _context = context;
         }
 
-        public async Task<object> GetSettings()
+        public async Task<GlobalSettings?> GetSettings()
+        {
+            return await _context.globalSettings.FirstOrDefaultAsync();
+        }
+
+        public async Task<GlobalSettings?> UpdateSettings(GlobalSettingsDto.GlobalDto settingsDto)
         {
             var settings = await _context.globalSettings.FirstOrDefaultAsync();
 
             if (settings == null)
             {
-                settings = new GlobalSettings
-                {
-                    ContactEmail = "ContactEmail",
-                    DeliveryTime = "1",
-                    FacebookUrl = "facebookurl",
-                    InstagramUrl = "instagramurl"
-                };
-
-                _context.globalSettings.Add(settings);
-                await _context.SaveChangesAsync();
-
-                return new { result = settings, message = "Beállítások létrehozva." };
+                return null;
             }
 
-            return new { result = settings, message = "Beállítások betöltve" };
-        }
 
-        public async Task<object> UpdateSettings(int id,GlobalSettingsDto.GlobalDto settingsDto)
-        {
-            var settings = await _context.globalSettings.FirstOrDefaultAsync(x => x.Id == id);
-            if(settings == null)
-            {
-                return new { message = "Nincs ilyen beállítás!" };
-            }
-
-            settings.ContactEmail = settingsDto.ContactEmail;
-            settings.DeliveryTime = settingsDto.DeliveryTime;
             settings.FacebookUrl = settingsDto.FacebookUrl;
             settings.InstagramUrl = settingsDto.InstagramUrl;
+            settings.ContactEmail = settingsDto.ContactEmail;
+            settings.DeliveryTime = settingsDto.DeliveryTime;
 
-            _context.globalSettings.Update(settings);
             await _context.SaveChangesAsync();
-
-            return new { result = settings, message = "Beállítások sikeresen frissítve." };
+            return settings;
         }
     }
 }

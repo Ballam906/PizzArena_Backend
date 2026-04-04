@@ -1,13 +1,15 @@
-﻿using static PizzaArena_API.Services.ChefSpecialFolder.Dtos.ChefDto;
+﻿using PizzaArena_API.Models;
+using PizzaArena_API.Services.CategoryFolder.Dtos;
+using static PizzaArena_API.Services.ChefSpecialFolder.Dtos.ChefDto;
 
 namespace PizzaArena_API.Services.CategoryFolder.ICategoryService
 {
     public interface ICategory
     {
-        Task<object> CategoryAdd(string Name);
-        Task<object> CategoryModify(int id, string Name);
-        Task<object> CategoryDelete(int id);
-        Task<object> GetCategoryById(int id);
-        Task<object> GetAllCategory();
+        Task<IEnumerable<Category>> GetAllCategory();
+        Task<Category?> GetCategoryById(int id);
+        Task<Category> CategoryAdd(CategoryDto.CreateCategoryDto dto);
+        Task<Category?> CategoryModify(int id, CategoryDto.UpdateCategoryDto dto);
+        Task<bool> CategoryDelete(int id);
     }
 }

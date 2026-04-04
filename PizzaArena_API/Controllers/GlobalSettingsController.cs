@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PizzaArena_API.Models;
 using PizzaArena_API.Services.GlobalSettingsFolder.Dtos;
 using PizzaArena_API.Services.GlobalSettingsFolder.IGlobalService;
+using static PizzaArena_API.Services.GlobalSettingsFolder.Dtos.GlobalSettingsDto;
 
 namespace PizzaArena_API.Controllers
 {
@@ -18,18 +20,19 @@ namespace PizzaArena_API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task<ActionResult<GlobalSettings>> Get()
         {
-            var res = await _globalsettings.GetSettings();
-            return Ok(res);
+            var settings = await _globalsettings.GetSettings();
+            if (settings == null) return NotFound("A beállítások még nincsenek inicializálva.");
+            return Ok(settings);
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPut]
-        public async Task<ActionResult> Update(int id,GlobalSettingsDto.GlobalDto dto)
+        public async Task<ActionResult<GlobalSettings>> Update([FromBody] GlobalDto dto)
         {
-            var res = await _globalsettings.UpdateSettings(id, dto);
-            return Ok(res);
+            var result = await _globalsettings.UpdateSettings(dto);
+            return Ok(result);
         }
     }
 }

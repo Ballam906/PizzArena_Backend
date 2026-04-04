@@ -22,9 +22,6 @@ namespace PizzaArena_API.Data
         public DbSet<GlobalSettings> globalSettings { get; set; } = null!;
         public DbSet<Restaurant> restaurants { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseMySQL("server=localhost;database=pizzaarena;user=root;password=;ssl mode=;");
-        }
+        
     }
 }

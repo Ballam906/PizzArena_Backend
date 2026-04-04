@@ -17,6 +17,14 @@ namespace PizzaArena_API.Models
         public string Other { get; set; }
 
         [Required]
+        public int RestaurantId { get; set; } 
+
+        [ForeignKey(nameof(RestaurantId))]
+        public Restaurant Restaurant { get; set; }
+
+        public OrderStatus Status { get; set; } = OrderStatus.New;
+
+        [Required]
         [ForeignKey(nameof(User))]
         public string User_Id { get; set; }
 

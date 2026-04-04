@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PizzaArena_API.Models;
+using PizzaArena_API.Services.OrderItemFolder;
 using PizzaArena_API.Services.OrderItemFolder.Dtos;
 using PizzaArena_API.Services.OrderItemFolder.IOrderItemService;
 
@@ -17,44 +19,53 @@ namespace PizzaArena_API.Controllers
             _orderItem = orderItem;
         }
 
-        [HttpGet]
-        [Authorize(Roles = "Admin")] 
-        public async Task<ActionResult> GetAll()
-        {
-            var result = await _orderItem.GetAllOrderItems();
-            return Ok(result);
-        }
-
-        [HttpGet("GetByOrderId")]
         [Authorize]
-        public async Task<ActionResult> GetById(int id)
+        [HttpGet("order/{orderId}")]
+        public async Task<ActionResult<IEnumerable<Order_Item>>> GetByOrder(int orderId)
         {
-            var result = await _orderItem.GetItemsByOrderId(id);
-            return Ok(result);
+            var items = await _orderItem.GetItemsByOrderId(orderId);
+            return Ok(items);
         }
 
-        [HttpDelete]
-        [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Delete(int id)
+        [Authorize]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Order_Item>> GetById(int id)
         {
-            var result = await _orderItem.DeleteOrderItem(id);
-            return Ok(result);
+            var item = await _orderItem.GetById(id);
+            if (item == null) return NotFound($"Az {id} azonosítójú tétel nem található.");
+            return Ok(item);
         }
 
+        [Authorize]
         [HttpPost]
-        [Authorize]
-        public async Task<ActionResult> Create(OrderItemDto.OrderItemAddDto dto)
+        public async Task<ActionResult<Order_Item>> AddItem([FromBody] OrderItemDto.OrderItemAddDto newItem)
         {
-            var result = await _orderItem.AddOrderItem(dto);
+            if (newItem == null) return BadRequest("Hibás adatok.");
+
+            var result = await _orderItem.AddItem(newItem);
+            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPatch("{id}/quantity")]
+        public async Task<ActionResult> UpdateQuantity(int id, [FromBody] int newQuantity)
+        {
+            if (newQuantity <= 0) return BadRequest("A mennyiségnek pozitív egész számnak kell lennie.");
+
+            var result = await _orderItem.UpdateQuantity(id, newQuantity);
+            if (result == null) return NotFound("A módosítani kívánt tétel nem található.");
+
             return Ok(result);
         }
 
-        [HttpPut]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> Update(int id, OrderItemDto.OrderItemUpdateDto dto)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteItem(int id)
         {
-            var result = await _orderItem.UpdateOrderItem(id, dto);
-            return Ok(result);
+            var success = await _orderItem.DeleteItem(id);
+            if (!success) return NotFound("A törölni kívánt tétel nem található.");
+
+            return Ok(new { message = "Tétel sikeresen törölve." });
         }
 
     }

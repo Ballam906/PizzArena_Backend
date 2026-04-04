@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PizzaArena_API.Models;
+using PizzaArena_API.Services.ChefSpecialFolder.Dtos;
+using PizzaArena_API.Services.ChefSpecialFolder.IChefService;
 using PizzaArena_API.Services.ProductFolder.Dtos;
 using PizzaArena_API.Services.ProductFolder.IProductService;
 
@@ -17,44 +20,40 @@ namespace PizzaArena_API.Controllers
             _product = product;
         }
 
-        //[Authorize]
         [HttpGet]
-        public async Task<ActionResult> GetAll()
+        public async Task<ActionResult<IEnumerable<Product>>> GetAllProduct()
         {
-            var result = await _product.GetProducts();
-            return Ok(result);
+            return Ok(await _product.GetProducts());
         }
 
-        [Authorize]
-        [HttpGet("GetById")]
-        public async Task<ActionResult> GetById(int id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Product>> GetById(int id)
         {
-            var result = await _product.GetProductById(id);
-            return Ok(result);
-        }
-
-        [Authorize(Roles = "Admin")]
-        [HttpDelete]
-        public async Task<ActionResult> DeleteProduct(int id)
-        {
-            var result = await _product.DeleteProduct(id);
-            return Ok(result);
+            var res = await _product.GetProductById(id);
+            return res == null ? NotFound() : Ok(res);
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<ActionResult> CreateProduct(ProductDto.ProductAddDto product)
+        public async Task<ActionResult<Product>> Add(ProductDto.ProductAddDto dto)
         {
-            var result = await _product.AddProduct(product);
-            return Ok(result);
+            return Ok(await _product.AddProduct(dto));
         }
 
         [Authorize(Roles = "Admin")]
         [HttpPut]
-        public async Task<ActionResult> UpdateProduct(int id,ProductDto.ProductUpdateDto updproduct)
+        public async Task<ActionResult<Product>> Modify(ProductDto.ProductUpdateDto dto)
         {
-            var result = await _product.UpdateProduct(id, updproduct);
-            return Ok(result);
+            var res = await _product.UpdateProduct(dto);
+            return res == null ? NotFound() : Ok(res);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var success = await _product.DeleteProduct(id);
+            return success ? Ok(new { message = "Termék sikeresen törölve." }) : NotFound();
         }
 
     }

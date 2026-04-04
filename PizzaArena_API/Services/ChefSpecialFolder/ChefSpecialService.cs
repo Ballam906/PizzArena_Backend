@@ -16,78 +16,50 @@ namespace PizzaArena_API.Services.ChefSpecialFolder
             _context = context;
         }
 
-        public async Task<object> ChefAdd(ChefDto.ChefAddDto chefadd)
+        public async Task<ChefSpecial> ChefAdd(ChefDto.ChefAddDto chefadd)
         {
-            var product = await _context.products.FindAsync(chefadd.ProductId);
-            if (product == null)
-            {
-                return new { result = "", Message = "A megadott termék nem létezik." };
-            }
-
-            var newchefspecial = new ChefSpecial
+            var special = new ChefSpecial
             {
                 ProductId = chefadd.ProductId,
-                CustomNote = chefadd.CustomNote
+                CustomNote = chefadd.CustomNote,
             };
 
-            _context.chefSpecials.Add(newchefspecial);
+            _context.chefSpecials.Add(special);
+            await _context.SaveChangesAsync();
+            return special;
+
+        }
+
+        public async Task<bool> ChefDelete(int id)
+        {
+            var special = await _context.chefSpecials.FindAsync(id);
+            if (special == null) return false;
+
+            _context.chefSpecials.Remove(special);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<IEnumerable<ChefSpecial>> ChefGetAll()
+        {
+            return await _context.chefSpecials.Include(x => x.Product).ToListAsync();
+        }
+
+        public async Task<ChefSpecial?> ChefGetById(int id)
+        {
+            return await _context.chefSpecials.FindAsync(id);
+        }
+
+        public async Task<ChefSpecial?> ChefModify(ChefDto.ChefModDto chefmod)
+        {
+            var special = await _context.chefSpecials.FindAsync(chefmod.Id);
+            if (special == null) return null;
+
+            special.ProductId = chefmod.ProductId;
+            special.CustomNote = chefmod.CustomNote;
 
             await _context.SaveChangesAsync();
-
-            return new {result =  newchefspecial, message = "Sikeres hozzáadás"};
-        }
-
-        public async Task<object> ChefDelete(int id)
-        {
-            var chefspecial = await _context.chefSpecials.FindAsync(id);
-            if (chefspecial == null)
-            {
-                return new { result = "", message = "Nincs ilyen Chef Special" };
-            }
-
-            _context.chefSpecials.Remove(chefspecial);
-            await _context.SaveChangesAsync();
-
-            return new { result = "", message = "Sikeres törlés" };
-        }
-
-        public async Task<object> ChefGetAll()
-        {
-            var chefspecials = await _context.chefSpecials
-                .Include(x => x.Product)
-                .ToListAsync();
-
-            return new { result = chefspecials, message = "Sikeres lekérdezés" };
-        }
-
-        public async Task<object> ChefGetById(int id)
-        {
-            var chefspecial = await _context.chefSpecials
-                .Include(x => x.Product)
-                .FirstOrDefaultAsync(x => x.Id == id);
-
-            if (chefspecial == null)
-            {
-                return new { result = "", message = "Nincs ilyen Chef Special" };
-            }
-
-            return new { result = chefspecial, message = "Sikeres lekérdezés" };
-        }
-
-        public async Task<object> ChefModify(ChefDto.ChefModDto chefmod)
-        {
-            var chefspecial = await _context.chefSpecials.FindAsync(chefmod.Id);
-            if (chefspecial == null)
-            {
-                return new { result = "", message = "Nincs ilyen Chef Special" };
-            }
-
-            chefspecial.ProductId = chefmod.ProductId;
-            chefspecial.CustomNote = chefmod.CustomNote;
-
-            await _context.SaveChangesAsync();
-
-            return new { result = chefspecial, message = "Sikeres módosítás" };
+            return special;
         }
     }
 }

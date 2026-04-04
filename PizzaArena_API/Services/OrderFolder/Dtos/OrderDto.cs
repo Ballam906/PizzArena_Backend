@@ -1,27 +1,36 @@
-﻿namespace PizzaArena_API.Services.OrderFolder.Dtos
+﻿using PizzaArena_API.Models;
+
+namespace PizzaArena_API.Services.OrderFolder.Dtos
 {
     public class OrderDto
     {
         public record OrderAddDto(
-            string customerName,
-            string customerEmail,
-            string customerPhone,
-            string postalCode,
-            string city,
-            string street,
-            string other,
-            string userid
+            string CustomerName,
+            string CustomerEmail,
+            string CustomerPhone,
+            string PostalCode,
+            string City,
+            string Street,
+            string Other,
+            string UserId,
+            int RestaurantId
         );
 
+        
         public record UpdateOrderDto(
-            string customerName,
-            string customerEmail,
-            string customerPhone,
-            string postalCode,
-            string city,
-            string street,
-            string other,
-            string userid
+            string CustomerName,
+            string CustomerEmail,
+            string CustomerPhone,
+            string PostalCode,
+            string City,
+            string Street,
+            string Other,
+            OrderStatus Status,
+            int RestaurantId 
+        );
+
+        public record UpdateOrderStatusDto(
+            OrderStatus Status
         );
     }
 }
