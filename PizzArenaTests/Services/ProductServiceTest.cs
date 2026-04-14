@@ -26,7 +26,7 @@ namespace PizzArenaTests.Services
         }
 
         [Fact]
-        public async Task AddProduct_ShouldSaveProductToDatabase()
+        public async Task AddProduct()
         {
             var context = GetDbContext();
             var service = new ProductService(context);
@@ -40,7 +40,7 @@ namespace PizzArenaTests.Services
         }
 
         [Fact]
-        public async Task GetProductById_ShouldReturnProduct_WhenExists()
+        public async Task GetProductById()
         {
             var context = GetDbContext();
             var testProduct = new Product { CategoryId = 2, Description = "", Name = "Teszt Pizza", Id = 2, IsAvailable = true, Image_Url= "", Price = 2200 };
@@ -56,7 +56,7 @@ namespace PizzArenaTests.Services
         }
 
         [Fact]
-        public async Task DeleteProduct_ShouldReturnFalse_WhenProductNotFound()
+        public async Task DeleteProduct()
         {
             var context = GetDbContext();
             var service = new ProductService(context);
@@ -67,7 +67,7 @@ namespace PizzArenaTests.Services
         }
 
         [Fact]
-        public async Task UpdateProduct_ShouldModifyExistingProduct()
+        public async Task UpdateProduct()
         {
             var context = GetDbContext();
             var originalProduct = new Product { CategoryId = 2, Description = "", Name = "Teszt Pizza", Id = 2, IsAvailable = true, Image_Url = "", Price = 2200 };

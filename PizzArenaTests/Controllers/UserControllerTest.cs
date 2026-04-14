@@ -26,7 +26,7 @@ namespace PizzArenaTests.Controllers
         }
 
         [Fact]
-        public async Task AddNewUser_ShouldReturn201_WhenRegistrationIsSuccessful()
+        public async Task AddNewUser()
         {
             var request = new RegisterRequestDto("teszt", "teszt@gmail.com", "Jelszo123");
             
@@ -43,7 +43,7 @@ namespace PizzArenaTests.Controllers
         }
 
         [Fact]
-        public async Task LoginUser_ShouldReturn404_WhenUserNotFound()
+        public async Task LoginUser()
         {
             var request = new LoginRequestDto("nemletezik","123");
             _userMock.Setup(s => s.Login(request)).ReturnsAsync((object)null);

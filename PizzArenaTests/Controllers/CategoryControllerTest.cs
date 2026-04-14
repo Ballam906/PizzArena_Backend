@@ -25,7 +25,7 @@ namespace PizzArenaTests.Controllers
         }
 
         [Fact]
-        public async Task GetAll_ShouldReturnOkWithCategories()
+        public async Task GetAllCategories()
         {
             var categories = new List<Category>
             {
@@ -36,13 +36,13 @@ namespace PizzArenaTests.Controllers
 
             var result = await _controller.GetAll();
 
-            var okResult = result.Result.Should().BeOfType<OkObjectResult>().Subject;
-            var returnedCategories = okResult.Value.Should().BeAssignableTo<IEnumerable<Category>>().Subject;
-            returnedCategories.Should().HaveCount(2);
+            var ok = result.Result.Should().BeOfType<OkObjectResult>().Subject;
+            var resultsuccess = ok.Value.Should().BeAssignableTo<IEnumerable<Category>>().Subject;
+            resultsuccess.Should().HaveCount(2);
         }
 
         [Fact]
-        public async Task GetById_ShouldReturnNotFound_WhenCategoryDoesNotExist()
+        public async Task GetByIdCategories()
         {
             _categoryMock.Setup(s => s.GetCategoryById(99)).ReturnsAsync((Category)null);
 
@@ -52,7 +52,7 @@ namespace PizzArenaTests.Controllers
         }
 
         [Fact]
-        public async Task Create_ShouldReturnCreatedAtAction()
+        public async Task CreateCategories()
         {
             var dto = new CategoryDto.CreateCategoryDto("Új Kategória");
             var createdCategory = new Category { Id = 5, Name = "Új Kategória" };
@@ -68,7 +68,7 @@ namespace PizzArenaTests.Controllers
         }
 
         [Fact]
-        public async Task Delete_ShouldReturnOk_WhenDeleteIsSuccessful()
+        public async Task DeleteCategories()
         {
             int targetId = 1;
             _categoryMock.Setup(s => s.CategoryDelete(targetId)).ReturnsAsync(true);
