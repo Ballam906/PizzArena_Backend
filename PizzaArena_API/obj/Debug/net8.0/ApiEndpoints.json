@@ -790,6 +790,22 @@
   },
   {
     "ContainingType": "PizzaArena_API.Controllers.UserController",
+    "Method": "ChangePassword",
+    "RelativePath": "api/User/change-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "PizzaArena_API.Services.UserFolder.Dtos.UserDto\u002BPasswordChangeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "PizzaArena_API.Controllers.UserController",
     "Method": "DeleteUser",
     "RelativePath": "api/User/deleteuser",
     "HttpMethod": "DELETE",

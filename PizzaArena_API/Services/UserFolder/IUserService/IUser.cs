@@ -11,5 +11,6 @@ namespace PizzaArena_API.Services.UserFolder.IUserService
         Task<bool> IsInRoleAsync(string userId, string roleName);
         Task<object> DeleteUser(string currentUserId, string targetUserId);
         Task<object> GetAllUser();
+        Task<object> UserPasswordChange(PasswordChangeDto passwordchangedto);
     }
 }

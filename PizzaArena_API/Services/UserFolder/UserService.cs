@@ -1,14 +1,19 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.Json;
+using Microsoft.IdentityModel.Tokens;
 using PizzaArena_API.Data;
+using PizzaArena_API.Migrations;
 using PizzaArena_API.Models;
 using PizzaArena_API.Services.UserFolder.Dtos;
 using PizzaArena_API.Services.UserFolder.IUserService;
+using User = PizzaArena_API.Models.User;
 
 namespace PizzaArena_API.Services.UserFolder
 {
     public class UserService : IUser
     {
+        
         private readonly PizzArenaDbContext _context;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -104,6 +109,25 @@ namespace PizzaArena_API.Services.UserFolder
             }
 
             return new { result = "", message = result.Errors.FirstOrDefault().Description };
+        }
+
+        public async Task<object> UserPasswordChange(UserDto.PasswordChangeDto passwordchangedto)
+        {
+            var user = await _userManager.FindByNameAsync(passwordchangedto.UserName);
+
+            if (user == null)
+            {
+                return new { success = false, message = "Nem található ilyen felhasználó." };
+            }
+
+            var result = await _userManager.ChangePasswordAsync(user, passwordchangedto.Password, passwordchangedto.NewPassword);
+
+            if (result.Succeeded)
+            {
+                return new { success = true, message = "Sikeres jelszócsere." };
+            }
+
+            return new { success = false, message = "Hiba történt" };
         }
     }
 }

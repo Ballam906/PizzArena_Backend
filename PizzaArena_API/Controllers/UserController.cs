@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PizzaArena_API.Migrations;
+using PizzaArena_API.Services.UserFolder;
 using PizzaArena_API.Services.UserFolder.IUserService;
 using System.Data;
 using static PizzaArena_API.Services.UserFolder.Dtos.UserDto;
@@ -116,6 +117,23 @@ namespace PizzaArena_API.Controllers
             }
 
             return BadRequest(res);
+        }
+
+        [Authorize]
+        [HttpPost("change-password")]
+        public async Task<ActionResult> ChangePassword([FromBody] PasswordChangeDto dto)
+        {
+            var result = await _user.UserPasswordChange(dto);
+
+           
+            dynamic res = result;
+
+            if (res.message != "Sikeres jelszó csere.")
+            {
+                return BadRequest(result);
+            }
+
+            return Ok(result);
         }
     }
 }
