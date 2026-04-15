@@ -3,6 +3,6 @@
     public class ChefDto
     {
         public record ChefAddDto(int ProductId, string CustomNote);
-        public record ChefModDto(int Id, int ProductId, string CustomNote);
+        public record ChefModDto(int ProductId, string CustomNote);
     }
 }

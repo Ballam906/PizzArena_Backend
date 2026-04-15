@@ -53,9 +53,9 @@ namespace PizzaArena_API.Services.RestaurantsFolder
             return await _context.restaurants.FindAsync(id);
         }
 
-        public async Task<Restaurant?> UpdateRestaurant(RestaDto.RestaurantUpdateDto dto)
+        public async Task<Restaurant?> UpdateRestaurant(int id,RestaDto.RestaurantUpdateDto dto)
         {
-            var restaurant = await _context.restaurants.FindAsync(dto.Id);
+            var restaurant = await _context.restaurants.FindAsync(id);
             if (restaurant == null) return null;
 
             restaurant.Name = dto.Name;

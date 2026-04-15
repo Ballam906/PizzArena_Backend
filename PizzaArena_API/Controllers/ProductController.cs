@@ -41,10 +41,10 @@ namespace PizzaArena_API.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPut]
-        public async Task<ActionResult<Product>> Modify(ProductDto.ProductUpdateDto dto)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Product>> Modify(int id, ProductDto.ProductUpdateDto dto)
         {
-            var res = await _product.UpdateProduct(dto);
+            var res = await _product.UpdateProduct(id,dto);
             return res == null ? NotFound() : Ok(res);
         }
 

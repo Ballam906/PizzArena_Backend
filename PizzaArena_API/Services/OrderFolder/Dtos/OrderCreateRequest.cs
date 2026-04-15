@@ -11,8 +11,6 @@
         public string Other { get; set; }
         public string UserId { get; set; }
         public int RestaurantId { get; set; }
-
-        // A kosár tartalma (tételek)
         public List<OrderItemRequest> Items { get; set; }
     }
 }

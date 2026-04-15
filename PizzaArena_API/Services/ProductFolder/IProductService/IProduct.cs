@@ -9,6 +9,6 @@ namespace PizzaArena_API.Services.ProductFolder.IProductService
         Task<Product?> GetProductById(int id);
         Task<Product> AddProduct(ProductAddDto newproduct);
         Task<bool> DeleteProduct(int id);
-        Task<Product?> UpdateProduct(ProductUpdateDto upproduct);
+        Task<Product?> UpdateProduct(int id,ProductUpdateDto upproduct);
     }
 }

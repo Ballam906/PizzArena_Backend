@@ -75,9 +75,9 @@ namespace PizzArenaTests.Services
             await context.SaveChangesAsync();
 
             var service = new ProductService(context);
-            var updateDto = new ProductDto.ProductUpdateDto(2, "Új Név", "Oke", 1500, true, "", 1);
+            var updateDto = new ProductDto.ProductUpdateDto("Új Név", "Oke", 1500, true, "", 1);
             
-            var result = await service.UpdateProduct(updateDto);
+            var result = await service.UpdateProduct(2,updateDto);
 
             result.Should().NotBeNull();
             result.Name.Should().Be("Új Név");

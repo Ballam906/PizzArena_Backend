@@ -56,9 +56,9 @@ namespace PizzaArena_API.Services.ProductFolder
             return await _context.products.ToListAsync();
         }
 
-        public async Task<Product?> UpdateProduct(ProductDto.ProductUpdateDto upproduct)
+        public async Task<Product?> UpdateProduct(int id,ProductDto.ProductUpdateDto upproduct)
         {
-            var product = await _context.products.FindAsync(upproduct.Id);
+            var product = await _context.products.FindAsync(id);
             if (product == null) return null;
 
             product.Description = upproduct.description;
@@ -69,8 +69,6 @@ namespace PizzaArena_API.Services.ProductFolder
             product.Image_Url = upproduct.Image_Url;
             product.ModTime = DateTime.Now;
 
-            
-            //_context.products.Update(product);
             await _context.SaveChangesAsync();
             return product;
 

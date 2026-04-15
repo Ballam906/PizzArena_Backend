@@ -6,7 +6,7 @@ namespace PizzaArena_API.Services.ChefSpecialFolder.IChefService
     public interface IChefSepcial
     {
         Task<ChefSpecial> ChefAdd(ChefAddDto chefadd);
-        Task<ChefSpecial?> ChefModify(ChefModDto chefmod);
+        Task<ChefSpecial?> ChefModify(int id,ChefModDto chefmod);
         Task<bool> ChefDelete(int id);
         Task<ChefSpecial?> ChefGetById(int id);
         Task<IEnumerable<ChefSpecial>> ChefGetAll();

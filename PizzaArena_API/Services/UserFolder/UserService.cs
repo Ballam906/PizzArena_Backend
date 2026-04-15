@@ -84,7 +84,6 @@ namespace PizzaArena_API.Services.UserFolder
             {
                 var roles = await _userManager.GetRolesAsync(user);
                 var jwtToken = _tokenGenerator.GenerateToken(user, roles);
-                Console.WriteLine($"Login user.Id: {user.Id}");
                 return new { result = new { user.UserName, user.Email, user.Id }, message = "Sikeres belépés.", token = jwtToken };
             }
 

@@ -33,7 +33,7 @@ namespace PizzaArena_API.Controllers
             return res == null ? NotFound() : Ok(res);
         }
 
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<ActionResult<Restaurant>> Add(RestaDto.RestaurantDto dto)
         {
@@ -41,10 +41,10 @@ namespace PizzaArena_API.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPut]
-        public async Task<ActionResult<Restaurant>> Modify(RestaDto.RestaurantUpdateDto dto)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Restaurant>> Modify(int id,RestaDto.RestaurantUpdateDto dto)
         {
-            var res = await _irestaurant.UpdateRestaurant(dto);
+            var res = await _irestaurant.UpdateRestaurant(id,dto);
             return res == null ? NotFound() : Ok(res);
         }
 

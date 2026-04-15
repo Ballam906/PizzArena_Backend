@@ -36,10 +36,10 @@ namespace PizzaArena_API.Controllers
 
 
         [Authorize(Roles = "Admin")]
-        [HttpPut]
-        public async Task<ActionResult<ChefSpecial>> Modify(ChefDto.ChefModDto dto)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ChefSpecial>> Modify(int id,ChefDto.ChefModDto dto)
         {
-            var res = await _chefSepcial.ChefModify(dto);
+            var res = await _chefSepcial.ChefModify(id,dto);
             return res == null ? NotFound() : Ok(res);
         }
 

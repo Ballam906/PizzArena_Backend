@@ -77,9 +77,9 @@ namespace PizzArenaTests.Services
             context.ChangeTracker.Clear();
 
             var service = new ChefSpecialService(context);
-            var modDto = new ChefDto.ChefModDto(5,2,"Új"); 
+            var modDto = new ChefDto.ChefModDto(2,"Új"); 
 
-            var result = await service.ChefModify(modDto);
+            var result = await service.ChefModify(5,modDto);
 
             result.Should().NotBeNull();
             result.CustomNote.Should().Be("Új");

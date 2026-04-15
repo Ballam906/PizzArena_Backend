@@ -50,9 +50,9 @@ namespace PizzaArena_API.Services.ChefSpecialFolder
             return await _context.chefSpecials.FindAsync(id);
         }
 
-        public async Task<ChefSpecial?> ChefModify(ChefDto.ChefModDto chefmod)
+        public async Task<ChefSpecial?> ChefModify(int id,ChefDto.ChefModDto chefmod)
         {
-            var special = await _context.chefSpecials.FindAsync(chefmod.Id);
+            var special = await _context.chefSpecials.FindAsync(id);
             if (special == null) return null;
 
             special.ProductId = chefmod.ProductId;

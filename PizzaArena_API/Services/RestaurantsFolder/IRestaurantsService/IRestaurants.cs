@@ -10,7 +10,7 @@ namespace PizzaArena_API.Services.RestaurantsFolder.IRestaurantsService
 
         Task<Restaurant> AddRestaurant(RestaurantDto dto);
 
-        Task<Restaurant?> UpdateRestaurant(RestaurantUpdateDto dto);
+        Task<Restaurant?> UpdateRestaurant(int id,RestaurantUpdateDto dto);
 
         Task<bool> DeleteRestaurant(int id);
     }

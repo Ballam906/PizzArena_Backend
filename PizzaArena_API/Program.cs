@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -35,8 +34,6 @@ namespace PizzaArena_API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-
-
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowFrontend",
@@ -48,13 +45,10 @@ namespace PizzaArena_API
                     });
             });
 
-
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
             builder.Services.AddDbContext<PizzArenaDbContext>(options =>
                 options.UseMySQL(connectionString));
-
-
 
             builder.Services.AddDbContext<PizzArenaDbContext>();
             builder.Services.AddScoped<IUser, UserService>();
@@ -66,7 +60,6 @@ namespace PizzaArena_API
             builder.Services.AddScoped<IProduct, ProductService>();
             builder.Services.AddScoped<IOrderItem, OrderItemService>();
             builder.Services.AddScoped<ICategory, CategoryService>();
-            
 
             builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<PizzArenaDbContext>().AddDefaultTokenProviders();
 
@@ -99,13 +92,9 @@ namespace PizzaArena_API
                 };
             });
 
-
-
             builder.Services.Configure<AdminSet>(builder.Configuration.GetSection("AdminUser"));
             builder.Services.Configure<GlobalSettings>(builder.Configuration.GetSection("GlobalSettings"));
             builder.Services.AddTransient<SettingSetService>();
-
-            
 
             // Add services to the container.
 
@@ -131,9 +120,6 @@ namespace PizzaArena_API
 
             app.UseAuthorization();
 
-            
-
-
             app.MapControllers();
 
             using (var scope = app.Services.CreateScope())
@@ -144,8 +130,6 @@ namespace PizzaArena_API
             }
 
             app.Run();
-
-            
         }
     }
 }
