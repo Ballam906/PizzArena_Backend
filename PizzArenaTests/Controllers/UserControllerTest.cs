@@ -26,10 +26,10 @@ namespace PizzArenaTests.Controllers
         }
 
         [Fact]
-        public async Task AddNewUser()
+        public async Task Register_ReturnsCreated_OnSuccessfulRegistration()
         {
             var request = new RegisterRequestDto("teszt", "teszt@gmail.com", "Jelszo123");
-            
+
             dynamic mockResponse = new ExpandoObject();
             mockResponse.message = "Sikeres regisztráció.";
 
@@ -43,9 +43,9 @@ namespace PizzArenaTests.Controllers
         }
 
         [Fact]
-        public async Task LoginUser()
+        public async Task Login_ReturnsNotFound_WhenUserDoesNotExist()
         {
-            var request = new LoginRequestDto("nemletezik","123");
+            var request = new LoginRequestDto("nemletezik", "123");
             _userMock.Setup(s => s.Login(request)).ReturnsAsync((object)null);
 
             var result = await _controller.LoginUser(request);

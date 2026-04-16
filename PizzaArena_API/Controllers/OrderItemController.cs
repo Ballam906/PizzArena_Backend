@@ -21,7 +21,7 @@ namespace PizzaArena_API.Controllers
 
         [Authorize]
         [HttpGet("order/{orderId}")]
-        public async Task<ActionResult<IEnumerable<Order_Item>>> GetByOrder(int orderId)
+        public async Task<ActionResult<IEnumerable<OrderItemDto.OrderItemResponseDto>>> GetByOrder(int orderId)
         {
             var items = await _orderItem.GetItemsByOrderId(orderId);
             return Ok(items);

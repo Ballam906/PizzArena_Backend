@@ -5,7 +5,7 @@ namespace PizzaArena_API.Services.OrderItemFolder.IOrderItemService
 {
     public interface IOrderItem
     {
-        Task<IEnumerable<Order_Item>> GetItemsByOrderId(int orderId);
+        Task<IEnumerable<OrderItemDto.OrderItemResponseDto>> GetItemsByOrderId(int orderId);
 
         Task<Order_Item> AddItem(OrderItemDto.OrderItemAddDto newItem);
 

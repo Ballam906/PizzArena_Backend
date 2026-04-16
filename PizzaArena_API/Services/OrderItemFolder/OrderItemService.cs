@@ -19,15 +19,23 @@ namespace PizzaArena_API.Services.OrderItemFolder
         public async Task<Order_Item?> GetById(int id)
         {
             return await _context.order_items
-                .Include(oi => oi.Product)
-                .FirstOrDefaultAsync(oi => oi.Id == id);
+                .Include(x => x.Product)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<Order_Item>> GetItemsByOrderId(int orderId)
+        public async Task<IEnumerable<OrderItemDto.OrderItemResponseDto>> GetItemsByOrderId(int orderId)
         {
             return await _context.order_items
-                .Include(oi => oi.Product)
-                .Where(oi => oi.Order_Id == orderId)
+                .Include(x => x.Product) 
+                .Where(x => x.Order_Id == orderId)
+                .Select(x => new OrderItemDto.OrderItemResponseDto(
+                    x.Id,
+                    x.ItemPrice,
+                    x.Piece,
+                    x.Order_Id,
+                    x.Item_Id,
+                    x.Product != null ? x.Product.Name : "Ismeretlen termék"
+                ))
                 .ToListAsync();
         }
 

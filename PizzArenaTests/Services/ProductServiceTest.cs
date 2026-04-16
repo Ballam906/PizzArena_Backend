@@ -26,24 +26,24 @@ namespace PizzArenaTests.Services
         }
 
         [Fact]
-        public async Task AddProduct()
+        public async Task AddProduct_SavesNewProductToDatabase()
         {
             var context = GetDbContext();
             var service = new ProductService(context);
-            var dto = new ProductDto.ProductAddDto("Pizza", "Egesz jo", 1222,true, "", 1);
+            var dto = new ProductDto.ProductAddDto("Pizza", "Egesz jo", 1222, true, "", 1);
 
             var result = await service.AddProduct(dto);
 
-            result.Id.Should().NotBe(0); 
+            result.Id.Should().NotBe(0);
             context.products.Count().Should().Be(1);
             context.products.First().Name.Should().Be("Pizza");
         }
 
         [Fact]
-        public async Task GetProductById()
+        public async Task GetProductById_ReturnsCorrectProduct_WhenIdExists()
         {
             var context = GetDbContext();
-            var testProduct = new Product { CategoryId = 2, Description = "", Name = "Teszt Pizza", Id = 2, IsAvailable = true, Image_Url= "", Price = 2200 };
+            var testProduct = new Product { CategoryId = 2, Description = "", Name = "Teszt Pizza", Id = 2, IsAvailable = true, Image_Url = "", Price = 2200 };
             context.products.Add(testProduct);
             await context.SaveChangesAsync();
 
@@ -56,7 +56,7 @@ namespace PizzArenaTests.Services
         }
 
         [Fact]
-        public async Task DeleteProduct()
+        public async Task DeleteProduct_ReturnsFalse_IfProductNotFound()
         {
             var context = GetDbContext();
             var service = new ProductService(context);
@@ -67,7 +67,7 @@ namespace PizzArenaTests.Services
         }
 
         [Fact]
-        public async Task UpdateProduct()
+        public async Task UpdateProduct_UpdatesFieldsAndModTime()
         {
             var context = GetDbContext();
             var originalProduct = new Product { CategoryId = 2, Description = "", Name = "Teszt Pizza", Id = 2, IsAvailable = true, Image_Url = "", Price = 2200 };
@@ -76,8 +76,8 @@ namespace PizzArenaTests.Services
 
             var service = new ProductService(context);
             var updateDto = new ProductDto.ProductUpdateDto("Új Név", "Oke", 1500, true, "", 1);
-            
-            var result = await service.UpdateProduct(2,updateDto);
+
+            var result = await service.UpdateProduct(2, updateDto);
 
             result.Should().NotBeNull();
             result.Name.Should().Be("Új Név");

@@ -3,11 +3,6 @@ using PizzaArena_API.Data;
 using PizzaArena_API.Models;
 using PizzaArena_API.Services.ChefSpecialFolder;
 using PizzaArena_API.Services.ChefSpecialFolder.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
 
 namespace PizzArenaTests.Services
@@ -24,7 +19,7 @@ namespace PizzArenaTests.Services
         }
 
         [Fact]
-        public async Task ChefAdd()
+        public async Task AddSpecial_SavesAndReturnsCorrectData()
         {
             var context = GetDbContext();
             var service = new ChefSpecialService(context);
@@ -38,37 +33,25 @@ namespace PizzArenaTests.Services
         }
 
         [Fact]
-        public async Task ChefGetAllWithProduct()
+        public async Task GetAll_IncludesRelatedProductData()
         {
             var context = GetDbContext();
-
-            var product = new Product
-            {
-                Id = 1,
-                Name = "Séf Kedvence",
-                Price = 3000,
-                Description = "Leírás",
-                Image_Url = "url",
-                CategoryId = 1
-            };
+            var product = new Product { Id = 1, Name = "Séf Kedvence", Price = 3000, Description = "Leírás", Image_Url = "url", CategoryId = 1 };
             var special = new ChefSpecial { Id = 1, ProductId = 1, CustomNote = "Megjegyzés" };
-
             context.products.Add(product);
             context.chefSpecials.Add(special);
             await context.SaveChangesAsync();
 
             var service = new ChefSpecialService(context);
-
             var result = await service.ChefGetAll();
 
             result.Should().NotBeEmpty();
-            var firstItem = result.First();
-            firstItem.Product.Should().NotBeNull();
-            firstItem.Product.Name.Should().Be("Séf Kedvence");
+            result.First().Product.Should().NotBeNull();
+            result.First().Product.Name.Should().Be("Séf Kedvence");
         }
 
         [Fact]
-        public async Task ChefModify()
+        public async Task Modify_UpdatesExistingRecordFields()
         {
             var context = GetDbContext();
             var existing = new ChefSpecial { Id = 5, ProductId = 1, CustomNote = "Régi" };
@@ -77,9 +60,9 @@ namespace PizzArenaTests.Services
             context.ChangeTracker.Clear();
 
             var service = new ChefSpecialService(context);
-            var modDto = new ChefDto.ChefModDto(2,"Új"); 
+            var modDto = new ChefDto.ChefModDto(2, "Új");
 
-            var result = await service.ChefModify(5,modDto);
+            var result = await service.ChefModify(5, modDto);
 
             result.Should().NotBeNull();
             result.CustomNote.Should().Be("Új");
@@ -87,7 +70,7 @@ namespace PizzArenaTests.Services
         }
 
         [Fact]
-        public async Task ChefDelete()
+        public async Task Delete_RemovesRecordFromDatabase()
         {
             var context = GetDbContext();
             var special = new ChefSpecial { Id = 1, ProductId = 1, CustomNote = "Törlendő" };
@@ -95,7 +78,6 @@ namespace PizzArenaTests.Services
             await context.SaveChangesAsync();
 
             var service = new ChefSpecialService(context);
-
             var success = await service.ChefDelete(1);
 
             success.Should().BeTrue();
