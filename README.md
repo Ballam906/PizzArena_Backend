@@ -33,3 +33,6 @@ Az adatbázis az **Entity Framework Core Migrations** segítségével épül fel
 
 
 ![Vizualizáció](docs/images/pelda.PNG)
+
+# PizzAréna Github linkje: 
+(https://github.com/Ballam906/PizzArena)
