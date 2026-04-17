@@ -1,3 +1,5 @@
+**Itt található a PizzArena backendje és hozzá tartozó tesztek, valamint az adatbázis struktúra képe és a dump fájl az adatbazis nevű mappában!**
+
 ![.NET Version](https://img.shields.io/badge/.NET-8.0-blueviolet)
 # PizzArena API (Backend)
 
@@ -17,7 +19,7 @@ Az adatbázis az **Entity Framework Core Migrations** segítségével épül fel
 * `Orders`: Rendelések fejléce.
 * `OrderItems`: Rendelési tételek és kapcsolat a termékekkel.
 * `Products` : Termékek.
-* `Categories` : Termékekhez kapcsolódó kategória (pl. Pizza,Üdítő)
+* `Categories` : Termékekhez kapcsolódó kategória (pl. Pizza, Üdítő)
 * `ChefSpecials` : Séf ajánlatok
 * `GlobalSettings` : Globális beállítások (pl. Instagram URL)
 * `Restaurants` : Éttermek és azok adatai
@@ -25,14 +27,14 @@ Az adatbázis az **Entity Framework Core Migrations** segítségével épül fel
 ## Helyi futtatás (Setup)
 
 1.  **ConnectionString beállítása:** Frissítsd az `appsettings.json` fájlban a `DefaultConnection` értékét a saját SQL Server elérésedre.
-2.  **Admin,Globális beállítások:** Az `appsettings.json` fájlban állítsd be az alapértelmezett admint és az alapértelmezett globális beállításokat (WPF Admin felületen később is módosítható).
+2.  **Admin, Globális beállítások:** Az `appsettings.json` fájlban állítsd be az alapértelmezett admint és az alapértelmezett globális beállításokat (WPF Admin felületen később is módosítható).
 3.  **Adatbázis létrehozása:**
     Futtasd a következő parancsot a *Package Manager Console*-ban:
-    update-database
+    `update-database`
 4.  **Indítás:** Nyomj `F5`-öt a Visual Studio-ban. A böngészőben automatikusan megnyílik a **Swagger UI**.
 
 
 ![Vizualizáció](docs/images/pelda.PNG)
 
 # PizzAréna Github linkje: 
-(https://github.com/Ballam906/PizzArena)
+[https://github.com/Ballam906/PizzArena](https://github.com/Ballam906/PizzArena)
