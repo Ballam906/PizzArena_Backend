@@ -8,9 +8,8 @@ Ez a projekt a **PizzArena** rendszer kiszolgáló oldala (REST API). Felelős a
 ## Funkciók
 
 * **Identity Kezelés:** Regisztráció, Bejelentkezés és Role-alapú jogosultságkezelés (Admin/User).
-* **Adatkezelés:** CRUD műveletek a felhasználókhoz, termékekhez és rendelésekhez.
-* **Validáció:** Szigorú szerveroldali ellenőrzés (pl. jelszó komplexitás).
-* **Hibakezelés:** Egységes JSON válaszformátum hiba esetén is.
+* **Adatkezelés:** CRUD műveletek a végpontokhoz.
+* **Validáció:** Szerveroldali ellenőrzés (pl. jelszó komplexitás).
 
 ## Adatbázis sémája
 
