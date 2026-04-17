@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PizzArenaTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+efb8ca38ef4526c31d7400eec8d72314a5cd7935")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+785da906c1416879a690197fa22d8a3b80fc7d5e")]
 [assembly: System.Reflection.AssemblyProductAttribute("PizzArenaTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PizzArenaTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -70,7 +70,9 @@ namespace PizzArenaTests.Services
         public async Task UpdateProduct_UpdatesFieldsAndModTime()
         {
             var context = GetDbContext();
-            var originalProduct = new Product { CategoryId = 2, Description = "", Name = "Teszt Pizza", Id = 2, IsAvailable = true, Image_Url = "", Price = 2200 };
+            var originalProduct = new Product { CategoryId = 2, 
+                Description = "", Name = "Teszt Pizza", Id = 2,
+                IsAvailable = true, Image_Url = "", Price = 2200 };
             context.products.Add(originalProduct);
             await context.SaveChangesAsync();
 
