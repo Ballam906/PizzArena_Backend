@@ -1,7 +1,7 @@
 **Itt található a PizzArena backendje és hozzá tartozó tesztek, valamint az adatbázis struktúra-terv képe és a dump fájl az adatbazis nevű mappában!**
 
 ![.NET Version](https://img.shields.io/badge/.NET-8.0-blueviolet)
-# PizzArena API (Backend)
+# PizzAréna API (Backend)
 
 Ez a projekt a **PizzArena** rendszer kiszolgáló oldala (REST API). Felelős a felhasználók hitelesítéséért, az adatok tárolásáért és a logika kiszolgálásáért a WPF admin panel és weboldala számára.
 
