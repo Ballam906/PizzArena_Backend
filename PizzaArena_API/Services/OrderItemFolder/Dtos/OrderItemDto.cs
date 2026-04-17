@@ -2,14 +2,14 @@
 {
     public class OrderItemDto
     {
-        public record OrderItemAddDto(int ItemPrice, int Piece, int Order_Id, int Item_Id);
+        public record OrderItemAddDto(int ItemPrice, int Piece, string ItemName, int Order_Id, int? Item_Id);
 
         public record OrderItemResponseDto(
             int Id,
             int ItemPrice,
             int Piece,
             int Order_Id,
-            int Item_Id,
+            int? Item_Id,
             string ItemName
         );
     }

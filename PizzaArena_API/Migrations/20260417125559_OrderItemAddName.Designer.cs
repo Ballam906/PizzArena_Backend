@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaArena_API.Data;
 
@@ -10,9 +11,11 @@ using PizzaArena_API.Data;
 namespace PizzaArena_API.Migrations
 {
     [DbContext(typeof(PizzArenaDbContext))]
-    partial class PizzArenaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260417125559_OrderItemAddName")]
+    partial class OrderItemAddName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -278,7 +281,7 @@ namespace PizzaArena_API.Migrations
                     b.Property<int>("ItemPrice")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Item_Id")
+                    b.Property<int>("Item_Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Order_Id")
@@ -524,7 +527,8 @@ namespace PizzaArena_API.Migrations
                     b.HasOne("PizzaArena_API.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("Item_Id")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PizzaArena_API.Models.Order", "Order")
                         .WithMany("OrderItems")

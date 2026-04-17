@@ -115,7 +115,8 @@ namespace PizzaArena_API.Services.OrderFolder
                 {
                     Item_Id = i.ProductId,
                     Piece = i.Piece,
-                    ItemPrice = i.ItemPrice
+                    ItemPrice = i.ItemPrice,
+                    ItemName = i.ItemName
                 }).ToList()
             };
 

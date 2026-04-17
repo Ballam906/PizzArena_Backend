@@ -34,7 +34,7 @@ namespace PizzaArena_API.Services.OrderItemFolder
                     x.Piece,
                     x.Order_Id,
                     x.Item_Id,
-                    x.Product != null ? x.Product.Name : "Ismeretlen termék"
+                    x.ItemName
                 ))
                 .ToListAsync();
         }
@@ -46,7 +46,8 @@ namespace PizzaArena_API.Services.OrderItemFolder
                 Order_Id = newItem.Order_Id,
                 Item_Id = newItem.Item_Id,
                 Piece = newItem.Piece,
-                ItemPrice = newItem.ItemPrice
+                ItemPrice = newItem.ItemPrice,
+                ItemName = newItem.ItemName
             };
 
             _context.order_items.Add(item);

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PizzaArena_API.Models;
+using PizzaArena_API.Services.OrderItemFolder.IOrderItemService;
 namespace PizzaArena_API.Data
 {
     public class PizzArenaDbContext : IdentityDbContext<User>
@@ -22,6 +23,16 @@ namespace PizzaArena_API.Data
         public DbSet<GlobalSettings> globalSettings { get; set; } = null!;
         public DbSet<Restaurant> restaurants { get; set; } = null!;
 
-        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Order_Item>()
+                .HasOne(x => x.Product)
+                .WithMany()
+                .HasForeignKey(x => x.Item_Id)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }
